@@ -1,6 +1,6 @@
 {
   "name": "relay-common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Abstract GraphQL-Relay lib for use with other adapters",
   "main": "index.js",
   "scripts": {
