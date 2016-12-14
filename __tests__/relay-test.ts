@@ -22,7 +22,8 @@ describe("Relay tests", () => {
             }`;
         const globalId1 = toGlobalId("Model2", "50");
         const resolver: IResolver = {
-            fetch: jest.fn((q: string, vars?: any) => {
+            fetch: jest.fn((q: string, vars?: any, subscriptionId?: string) => {
+                expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
                     viewer: {
                         id: toGlobalId("Viewer", ""),

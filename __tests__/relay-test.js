@@ -30,7 +30,8 @@ describe("Relay tests", () => {
             }`;
         const globalId1 = graphql_relay_1.toGlobalId("Model2", "50");
         const resolver = {
-            fetch: jest.fn((q, vars) => {
+            fetch: jest.fn((q, vars, subscriptionId) => {
+                expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
                     viewer: {
                         id: graphql_relay_1.toGlobalId("Viewer", ""),

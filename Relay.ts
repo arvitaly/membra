@@ -2,7 +2,7 @@ import { Fields, fromQuery } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
 import { IQuery } from "./typings";
 export interface IResolver {
-    fetch(query: string, vars?: any): Promise<any>;
+    fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
 }
 interface IData {
     id: string;
@@ -17,10 +17,10 @@ class Relay {
     protected id = 0;
     constructor(protected resolver: IResolver) { }
     public async live(query: IQuery, vars?: any): Promise<IData> {
-        const data = await this.resolver.fetch(query.text, vars);
+        const id = this.getNewId();
+        const data = await this.resolver.fetch(query.text, vars, id);
         const ids = this.getIds(data, query.fields);
         const o = onemitter();
-        const id = this.getNewId();
         this.data[id] = {
             id,
             value: data,

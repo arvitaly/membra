@@ -1,5 +1,30 @@
 exports[`Relay tests live 1`] = `
 Object {
+  "q": "query Q1 {
+  viewer {
+    model1 {
+      edges {
+        node {
+          field1
+          model2 {
+            field2
+            id
+          }
+          id
+        }
+      }
+    }
+    id
+  }
+}
+",
+  "subscriptionId": "1",
+  "vars": undefined,
+}
+`;
+
+exports[`Relay tests live 2`] = `
+Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
     "model1": Object {
@@ -20,7 +45,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 2`] = `
+exports[`Relay tests live 3`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -47,7 +72,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 3`] = `
+exports[`Relay tests live 4`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",

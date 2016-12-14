@@ -16,10 +16,10 @@ class Relay {
     }
     live(query, vars) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.resolver.fetch(query.text, vars);
+            const id = this.getNewId();
+            const data = yield this.resolver.fetch(query.text, vars, id);
             const ids = this.getIds(data, query.fields);
             const o = onemitter_1.default();
-            const id = this.getNewId();
             this.data[id] = {
                 id,
                 value: data,
