@@ -1,0 +1,75 @@
+exports[`Relay tests live 1`] = `
+Object {
+  "viewer": Object {
+    "id": "Vmlld2VyOg==",
+    "model1": Object {
+      "edges": Array [
+        Object {
+          "node": Object {
+            "field1": "field1Value",
+            "id": "TW9kZWwyOjUw",
+            "model2": Object {
+              "field2": 15,
+              "id": "TW9kZWwyOjEwMA==",
+            },
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Relay tests live 2`] = `
+Object {
+  "viewer": Object {
+    "id": "Vmlld2VyOg==",
+    "model1": Object {
+      "edges": Array [
+        Object {
+          "node": Object {
+            "field1": "field1Value",
+            "id": "TW9kZWwyOjUw",
+            "model2": Object {
+              "field2": 15,
+              "id": "TW9kZWwyOjEwMA==",
+            },
+          },
+        },
+        Object {
+          "node": Object {
+            "field1": "field1Value2",
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Relay tests live 3`] = `
+Object {
+  "viewer": Object {
+    "id": "Vmlld2VyOg==",
+    "model1": Object {
+      "edges": Array [
+        Object {
+          "node": Object {
+            "field1": "field1Value3",
+            "id": "TW9kZWwyOjUw",
+            "model2": Object {
+              "field2": 15,
+              "id": "TW9kZWwyOjEwMA==",
+            },
+          },
+        },
+        Object {
+          "node": Object {
+            "field1": "field1Value2",
+          },
+        },
+      ],
+    },
+  },
+}
+`;
