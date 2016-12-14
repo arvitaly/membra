@@ -1,0 +1,40 @@
+{
+  "name": "relay-common",
+  "version": "0.0.0",
+  "description": "Abstract GraphQL-Relay lib for use with other adapters",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && tslint --project=tsconfig.json && jest --verbose --coverage",
+    "watch:test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvitaly/relay-common.git"
+  },
+  "keywords": [
+    "relay",
+    "graphql"
+  ],
+  "author": "arvitaly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arvitaly/relay-common/issues"
+  },
+  "homepage": "https://github.com/arvitaly/relay-common#readme",
+  "jest": {
+    "automock": true,
+    "unmockedModulePathPatterns": [
+      "react"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^16.0.1",
+    "coveralls": "^2.11.15",
+    "jest": "^17.0.3",
+    "tslint": "^4.0.2",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "graphql-fields-info": "0.0.3"
+  }
+}
