@@ -38,44 +38,39 @@ class Relay {
         this.data[dataId].ids.push(globalId);
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
+        const newValue = { id: globalId };
+        this.fillNode(newValue, value, this.data[dataId].query.nodeFields);
         this.data[dataId].value[root][connection].edges.push({
-            node: value,
+            node: newValue,
         });
         setTimeout(() => {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
         });
     }
     public updateNode(dataId: string, globalId: string, value: any) {
-        const rootField = this.data[dataId].query.fields[0].fields[0];
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
         const rootNode = this.data[dataId].value[root][connection];
         if (this.data[dataId].query.type === "node") {
-            rootField.fields.map((field) => {
-                if (typeof (value[field.name]) !== "undefined") {
-                    rootNode[field.name] = value[field.name];
-                }
-            });
+            this.fillNode(rootNode, value, this.data[dataId].query.nodeFields);
         } else {
-            const edgesField = rootField.fields.find((f) => f.name === "edges");
-            if (!edgesField) {
-                throw new Error("Not found edges field in connection");
-            }
-            const nodeField = edgesField.fields.find((f) => f.name === "node");
-            if (!nodeField) {
-                throw new Error("Not found node field in connection");
-            }
             rootNode.edges.filter((edge: any) => edge.node.id === globalId).map((edge: any) => {
-                const node = edge.node;
-                nodeField.fields.map((field) => {
-                    if (typeof (value[field.name]) !== "undefined") {
-                        node[field.name] = value[field.name];
-                    }
-                });
+                this.fillNode(edge.node, value, this.data[dataId].query.nodeFields);
             });
         }
         setTimeout(() => {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
+        });
+    }
+    protected fillNode(source: any, updatings: any, fields: Fields) {
+        fields.map((field) => {
+            if (typeof (updatings[field.name]) !== "undefined") {
+                if (field.fields.length > 0) {
+                    source[field.name] = this.fillNode(source[field.name], updatings[field.name], field.fields);
+                } else {
+                    source[field.name] = updatings[field.name];
+                }
+            }
         });
     }
     protected getIds(data: any, fields: Fields) {

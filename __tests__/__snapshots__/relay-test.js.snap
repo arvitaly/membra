@@ -64,6 +64,7 @@ Object {
         Object {
           "node": Object {
             "field1": "field1Value2",
+            "id": "TW9kZWwxOjUzMw==",
           },
         },
       ],
@@ -91,6 +92,7 @@ Object {
         Object {
           "node": Object {
             "field1": "field1Value2",
+            "id": "TW9kZWwxOjUzMw==",
           },
         },
       ],

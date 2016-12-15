@@ -10,16 +10,20 @@ class QueryParser {
         const text: string = "" + fieldsInfo.print();
         const fields = fieldsInfo.getFields();
         let type: "node" | "connection";
+        let nodeFields: Fields;
         if (fields[0].fields[0].isNode) {
             type = "node";
+            nodeFields = fieldsInfo.getQueryOneFields();
         } else if (fields[0].fields[0].isConnection) {
             type = "connection";
+            nodeFields = fieldsInfo.getQueryConnectionFields();
         } else {
             throw new Error("Unknown query type");
         }
         return {
             text,
             fields,
+            nodeFields,
             type,
         };
     }
