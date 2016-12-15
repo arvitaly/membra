@@ -54,5 +54,8 @@ describe("Relay tests", () => {
         relay.updateNode(data.id, globalId1, { field1: "field1Value3", excess2: "hi2" });
         result = await data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        await relay.restoreAllLive();
+        result = await data.onemitter.wait();
+        expect(result).toMatchSnapshot();
     });
 });

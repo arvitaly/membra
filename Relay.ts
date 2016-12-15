@@ -9,6 +9,7 @@ interface IData {
     value: any;
     ids: string[];
     query: IQuery;
+    vars: any;
     onemitter: Onemitter<any>;
 }
 interface ILiveQuery extends Onemitter<any> { }
@@ -18,19 +19,18 @@ class Relay {
     constructor(protected resolver: IResolver) { }
     public async live(query: IQuery, vars?: any): Promise<IData> {
         const id = this.getNewId();
-        const data = await this.resolver.fetch(query.text, vars, id);
-        const ids = this.getIds(data, query.fields);
         const o = onemitter();
         this.data[id] = {
             id,
-            value: data,
-            ids,
+            value: null,
+            ids: [],
+            vars,
             query,
             onemitter: o,
         };
-
+        await this.fillQuery(this.data[id]);
         setTimeout(() => {
-            o.emit(data);
+            o.emit(this.data[id].value);
         });
         return this.data[id];
     }
@@ -61,6 +61,20 @@ class Relay {
         setTimeout(() => {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
         });
+    }
+    public async restoreAllLive() {
+        return Promise.all(Object.keys(this.data).map(async (id) => {
+            await this.fillQuery(this.data[id]);
+            setTimeout(() => {
+                this.data[id].onemitter.emit(this.data[id].value);
+            });
+        }));
+    }
+    protected async fillQuery(data: IData) {
+        const value = await this.resolver.fetch(data.query.text, data.vars, data.id);
+        const ids = this.getIds(value, data.query.fields);
+        data.value = value;
+        data.ids = ids;
     }
     protected fillNode(source: any, updatings: any, fields: Fields) {
         fields.map((field) => {

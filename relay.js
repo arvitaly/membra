@@ -17,18 +17,18 @@ class Relay {
     live(query, vars) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = this.getNewId();
-            const data = yield this.resolver.fetch(query.text, vars, id);
-            const ids = this.getIds(data, query.fields);
             const o = onemitter_1.default();
             this.data[id] = {
                 id,
-                value: data,
-                ids,
+                value: null,
+                ids: [],
+                vars,
                 query,
                 onemitter: o,
             };
+            yield this.fillQuery(this.data[id]);
             setTimeout(() => {
-                o.emit(data);
+                o.emit(this.data[id].value);
             });
             return this.data[id];
         });
@@ -60,6 +60,24 @@ class Relay {
         }
         setTimeout(() => {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
+        });
+    }
+    restoreAllLive() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return Promise.all(Object.keys(this.data).map((id) => __awaiter(this, void 0, void 0, function* () {
+                yield this.fillQuery(this.data[id]);
+                setTimeout(() => {
+                    this.data[id].onemitter.emit(this.data[id].value);
+                });
+            })));
+        });
+    }
+    fillQuery(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const value = yield this.resolver.fetch(data.query.text, data.vars, data.id);
+            const ids = this.getIds(value, data.query.fields);
+            data.value = value;
+            data.ids = ids;
         });
     }
     fillNode(source, updatings, fields) {

@@ -100,3 +100,50 @@ Object {
   },
 }
 `;
+
+exports[`Relay tests live 5`] = `
+Object {
+  "q": "query Q1 {
+  viewer {
+    model1 {
+      edges {
+        node {
+          field1
+          model2 {
+            field2
+            id
+          }
+          id
+        }
+      }
+    }
+    id
+  }
+}
+",
+  "subscriptionId": "1",
+  "vars": undefined,
+}
+`;
+
+exports[`Relay tests live 6`] = `
+Object {
+  "viewer": Object {
+    "id": "Vmlld2VyOg==",
+    "model1": Object {
+      "edges": Array [
+        Object {
+          "node": Object {
+            "field1": "field1Value",
+            "id": "TW9kZWwyOjUw",
+            "model2": Object {
+              "field2": 15,
+              "id": "TW9kZWwyOjEwMA==",
+            },
+          },
+        },
+      ],
+    },
+  },
+}
+`;
