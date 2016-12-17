@@ -35,7 +35,7 @@
     "typescript": "^2.1.4"
   },
   "dependencies": {
-    "graphql-fields-info": "0.0.8",
+    "graphql-fields-info": "0.0.9",
     "onemitter": "0.0.6"
   }
 }
