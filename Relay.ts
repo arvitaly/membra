@@ -114,10 +114,12 @@ class Relay {
         if (!nodeField) {
             throw new Error("Not found node field in connection");
         }
-        data.edges.map((edge: any) => {
-            ids = ids.concat(this.getIds(edge.node, nodeField.fields));
+        // TEMPORARY CHANGE to FLAT getIds, need recoursivelly
+        return data.edges.map((edge: any) => {
+            // ids = ids.concat(this.getIds(edge.node, nodeField.fields));
+            return edge.node.id;
         });
-        return ids;
+        // return ids;
     }
     protected getNewId() {
         return "" + ++this.id;
