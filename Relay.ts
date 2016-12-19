@@ -80,10 +80,12 @@ class Relay {
         fields.map((field) => {
             if (typeof (updatings[field.name]) !== "undefined") {
                 if (field.fields.length > 0) {
-                    if (typeof (source[field.name]) !== "object") {
-                        source[field.name] = {};
+                    if (typeof (updatings[field.name]) === "object") {
+                        if (typeof (source[field.name]) !== "object") {
+                            source[field.name] = {};
+                        }
+                        this.fillNode(source[field.name], updatings[field.name], field.fields);
                     }
-                    this.fillNode(source[field.name], updatings[field.name], field.fields);
                 } else {
                     source[field.name] = updatings[field.name];
                 }
