@@ -2,7 +2,7 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
@@ -24,7 +24,13 @@ class Relay {
                 ids: [],
                 vars,
                 query,
+                isRemoved: false,
                 onemitter: o,
+                remove: () => __awaiter(this, void 0, void 0, function* () {
+                    this.data[id].isRemoved = true;
+                    o.removeAllListeners();
+                    yield this.resolver.unsubscribe(id);
+                }),
             };
             yield this.fillQuery(this.data[id]);
             setTimeout(() => {
@@ -34,6 +40,9 @@ class Relay {
         });
     }
     addNode(dataId, globalId, value) {
+        if (this.data[dataId].isRemoved) {
+            return;
+        }
         this.data[dataId].ids.push(globalId);
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
@@ -47,6 +56,9 @@ class Relay {
         });
     }
     updateNode(dataId, globalId, value) {
+        if (this.data[dataId].isRemoved) {
+            return;
+        }
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
         const rootNode = this.data[dataId].value[root][connection];

@@ -21,7 +21,9 @@ describe("Relay tests", () => {
                 }
             }`;
         const globalId1 = toGlobalId("Model2", "50");
+        const unsubscribe = jest.fn();
         const resolver: IResolver = {
+            unsubscribe,
             fetch: jest.fn((q: string, vars?: any, subscriptionId?: string) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
@@ -57,5 +59,8 @@ describe("Relay tests", () => {
         await relay.restoreAllLive();
         result = await data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        data.remove();
+        relay.addNode(data.id, globalId2, { field1: "field1Value26", model2: { field2: 180 }, excess1: "hi3" });
+        expect(unsubscribe.mock.calls.length).toBe(1);
     });
 });

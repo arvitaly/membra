@@ -2,7 +2,7 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
@@ -29,7 +29,9 @@ describe("Relay tests", () => {
                 }
             }`;
         const globalId1 = graphql_relay_1.toGlobalId("Model2", "50");
+        const unsubscribe = jest.fn();
         const resolver = {
+            unsubscribe,
             fetch: jest.fn((q, vars, subscriptionId) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
@@ -65,5 +67,8 @@ describe("Relay tests", () => {
         yield relay.restoreAllLive();
         result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        data.remove();
+        relay.addNode(data.id, globalId2, { field1: "field1Value26", model2: { field2: 180 }, excess1: "hi3" });
+        expect(unsubscribe.mock.calls.length).toBe(1);
     }));
 });

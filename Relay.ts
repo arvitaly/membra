@@ -3,6 +3,7 @@ import onemitter, { Onemitter } from "onemitter";
 import { IQuery } from "./typings";
 export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
+    unsubscribe(id: string): Promise<void>;
 }
 interface IData {
     id: string;
@@ -10,7 +11,9 @@ interface IData {
     ids: string[];
     query: IQuery;
     vars: any;
+    isRemoved: boolean;
     onemitter: Onemitter<any>;
+    remove: () => void;
 }
 interface ILiveQuery extends Onemitter<any> { }
 class Relay {
@@ -26,7 +29,13 @@ class Relay {
             ids: [],
             vars,
             query,
+            isRemoved: false,
             onemitter: o,
+            remove: async () => {
+                this.data[id].isRemoved = true;
+                o.removeAllListeners();
+                await this.resolver.unsubscribe(id);
+            },
         };
         await this.fillQuery(this.data[id]);
         setTimeout(() => {
@@ -35,6 +44,9 @@ class Relay {
         return this.data[id];
     }
     public addNode(dataId: string, globalId: string, value: any) {
+        if (this.data[dataId].isRemoved) {
+            return;
+        }
         this.data[dataId].ids.push(globalId);
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
@@ -48,6 +60,9 @@ class Relay {
         });
     }
     public updateNode(dataId: string, globalId: string, value: any) {
+        if (this.data[dataId].isRemoved) {
+            return;
+        }
         const root = Object.keys(this.data[dataId].value)[0];
         const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
         const rootNode = this.data[dataId].value[root][connection];
