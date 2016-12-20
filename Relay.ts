@@ -5,7 +5,7 @@ export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
     unsubscribe(id: string): Promise<void>;
 }
-interface IData {
+export interface IQueryResult {
     id: string;
     value: any;
     ids: string[];
@@ -17,10 +17,10 @@ interface IData {
 }
 interface ILiveQuery extends Onemitter<any> { }
 class Relay {
-    protected data: { [index: string]: IData } = {};
+    protected data: { [index: string]: IQueryResult } = {};
     protected id = 0;
     constructor(protected resolver: IResolver) { }
-    public async live(query: IQuery, vars?: any): Promise<IData> {
+    public async live(query: IQuery, vars?: any): Promise<IQueryResult> {
         const id = this.getNewId();
         const o = onemitter();
         this.data[id] = {
@@ -85,7 +85,7 @@ class Relay {
             });
         }));
     }
-    protected async fillQuery(data: IData) {
+    protected async fillQuery(data: IQueryResult) {
         const value = await this.resolver.fetch(data.query.text, data.vars, data.id);
         const ids = this.getIds(value, data.query.fields);
         data.value = value;
