@@ -15,6 +15,9 @@ export interface IQueryResult {
     onemitter: Onemitter<any>;
     remove: () => void;
 }
+export interface IRelayClient {
+    live(query: IQuery, vars?: any): Promise<IQueryResult>;
+}
 interface ILiveQuery extends Onemitter<any> { }
 class Relay {
     protected data: { [index: string]: IQueryResult } = {};
