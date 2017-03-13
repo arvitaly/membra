@@ -1,5 +1,7 @@
 # relay-common
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/arvitaly/relay-common.svg)](https://greenkeeper.io/)
+
 Abstract GraphQL-Relay lib for use with other adapters
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
