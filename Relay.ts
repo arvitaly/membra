@@ -105,7 +105,9 @@ class Relay {
                         this.fillNode(source[field.name], updatings[field.name], field.fields);
                     }
                 } else {
-                    source[field.name] = updatings[field.name];
+                    if (field.name !== "id") {
+                        source[field.name] = updatings[field.name];
+                    }
                 }
             }
         });
