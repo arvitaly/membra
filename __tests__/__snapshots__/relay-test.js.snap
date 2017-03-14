@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Relay tests live 1`] = `
 Object {
   "q": "query Q1 {
