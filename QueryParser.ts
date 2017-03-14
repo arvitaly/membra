@@ -9,9 +9,12 @@ class QueryParser {
         this.addIds(fieldsInfo.getFields());
         const text: string = "" + fieldsInfo.print();
         const fields = fieldsInfo.getFields();
-        let type: "node" | "connection";
+        let type: "node" | "connection" | "nodeInterface";
         let nodeFields: Fields;
-        if (fields[0].fields[0].isNode) {
+        if (fields[0].isInterface) {
+            type = "nodeInterface";
+            nodeFields = fieldsInfo.getNodeInterfaceFields();
+        } else if (fields[0].fields[0].isNode) {
             type = "node";
             nodeFields = fieldsInfo.getQueryOneFields();
         } else if (fields[0].fields[0].isConnection) {

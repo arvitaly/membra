@@ -14,7 +14,11 @@ class QueryParser {
         const fields = fieldsInfo.getFields();
         let type;
         let nodeFields;
-        if (fields[0].fields[0].isNode) {
+        if (fields[0].isInterface) {
+            type = "nodeInterface";
+            nodeFields = fieldsInfo.getNodeInterfaceFields();
+        }
+        else if (fields[0].fields[0].isNode) {
             type = "node";
             nodeFields = fieldsInfo.getQueryOneFields();
         }

@@ -1,5 +1,163 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`QueryParser node 1`] = `
+Object {
+  "fields": Array [
+    Object {
+      "args": Array [
+        Object {
+          "defaultValue": undefined,
+          "description": "The ID of an object",
+          "name": "id",
+          "type": "ID!",
+        },
+      ],
+      "fields": Array [
+        Object {
+          "args": Array [],
+          "fields": Array [],
+          "isConnection": false,
+          "isNode": false,
+          "name": "field1",
+          "node": Object {
+            "alias": null,
+            "arguments": Array [],
+            "directives": Array [],
+            "kind": "Field",
+            "loc": Object {
+              "end": 169,
+              "start": 163,
+            },
+            "name": Object {
+              "kind": "Name",
+              "loc": Object {
+                "end": 169,
+                "start": 163,
+              },
+              "value": "field1",
+            },
+            "selectionSet": null,
+          },
+          "type": "String",
+          "typeName": "Model1",
+        },
+      ],
+      "isConnection": false,
+      "isInterface": true,
+      "isNode": false,
+      "name": "node",
+      "node": Object {
+        "alias": null,
+        "arguments": Array [
+          Object {
+            "kind": "Argument",
+            "loc": Object {
+              "end": 51,
+              "start": 44,
+            },
+            "name": Object {
+              "kind": "Name",
+              "loc": Object {
+                "end": 46,
+                "start": 44,
+              },
+              "value": "id",
+            },
+            "value": Object {
+              "kind": "StringValue",
+              "loc": Object {
+                "end": 51,
+                "start": 48,
+              },
+              "value": "1",
+            },
+          },
+        ],
+        "directives": Array [],
+        "kind": "Field",
+        "loc": Object {
+          "end": 97,
+          "start": 39,
+        },
+        "name": Object {
+          "kind": "Name",
+          "loc": Object {
+            "end": 43,
+            "start": 39,
+          },
+          "value": "node",
+        },
+        "selectionSet": Object {
+          "kind": "SelectionSet",
+          "loc": Object {
+            "end": 97,
+            "start": 52,
+          },
+          "selections": Array [
+            Object {
+              "directives": Array [],
+              "kind": "FragmentSpread",
+              "loc": Object {
+                "end": 79,
+                "start": 74,
+              },
+              "name": Object {
+                "kind": "Name",
+                "loc": Object {
+                  "end": 79,
+                  "start": 77,
+                },
+                "value": "F1",
+              },
+            },
+          ],
+        },
+      },
+      "type": "Node",
+    },
+  ],
+  "nodeFields": Array [
+    Object {
+      "args": Array [],
+      "fields": Array [],
+      "isConnection": false,
+      "isNode": false,
+      "name": "field1",
+      "node": Object {
+        "alias": null,
+        "arguments": Array [],
+        "directives": Array [],
+        "kind": "Field",
+        "loc": Object {
+          "end": 169,
+          "start": 163,
+        },
+        "name": Object {
+          "kind": "Name",
+          "loc": Object {
+            "end": 169,
+            "start": 163,
+          },
+          "value": "field1",
+        },
+        "selectionSet": null,
+      },
+      "type": "String",
+      "typeName": "Model1",
+    },
+  ],
+  "text": "query Q1 {
+  node(id: \\"1\\") {
+    ...F1
+  }
+}
+fragment F1 on Model1 {
+  field1
+}",
+  "type": "nodeInterface",
+}
+`;
+
 exports[`QueryParser simple 1`] = `
 Object {
   "fields": Array [

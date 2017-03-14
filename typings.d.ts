@@ -3,5 +3,5 @@ export interface IQuery {
     text: string;
     fields: Fields;
     nodeFields: Fields;
-    type: "node" | "connection";
+    type: "node" | "connection" | "nodeInterface";
 }

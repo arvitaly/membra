@@ -9,6 +9,7 @@ const schema = new g.GraphQLSchema({
     query: new g.GraphQLObjectType({
         name: "Query",
         fields: {
+            node: nodeInterface.nodeField,
             viewer: {
                 type: new g.GraphQLObjectType({
                     name: "Viewer",
