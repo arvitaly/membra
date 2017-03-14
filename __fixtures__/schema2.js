@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const g = require("graphql");
 const graphql_relay_1 = require("graphql-relay");
 const nodeInterface = graphql_relay_1.nodeDefinitions(() => { }, () => {
@@ -64,5 +65,4 @@ const schema = new g.GraphQLSchema({
         },
     }),
 });
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = schema;

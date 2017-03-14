@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const graphql_fields_info_1 = require("graphql-fields-info");
 class QueryParser {
@@ -59,5 +60,4 @@ class QueryParser {
         });
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = QueryParser;

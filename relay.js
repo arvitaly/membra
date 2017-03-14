@@ -4,10 +4,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const onemitter_1 = require("onemitter");
+// interface ILiveQuery extends Onemitter<any> { }
 class Relay {
     constructor(resolver) {
         this.resolver = resolver;
@@ -124,7 +126,7 @@ class Relay {
         return ids;
     }
     getIdsFromConnection(data, fields) {
-        let ids = [];
+        const ids = [];
         const edgesField = fields.find((f) => f.name === "edges");
         if (!edgesField) {
             throw new Error("Not found edges field in connection");
@@ -144,5 +146,4 @@ class Relay {
         return "" + ++this.id;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Relay;

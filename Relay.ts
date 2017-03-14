@@ -18,7 +18,7 @@ export interface IQueryResult {
 export interface IRelayClient {
     live(query: IQuery, vars?: any): Promise<IQueryResult>;
 }
-interface ILiveQuery extends Onemitter<any> { }
+// interface ILiveQuery extends Onemitter<any> { }
 class Relay {
     protected data: { [index: string]: IQueryResult } = {};
     protected id = 0;
@@ -125,7 +125,7 @@ class Relay {
         return ids;
     }
     protected getIdsFromConnection(data: any, fields: Fields) {
-        let ids: string[] = [];
+        const ids: string[] = [];
         const edgesField = fields.find((f) => f.name === "edges");
         if (!edgesField) {
             throw new Error("Not found edges field in connection");
