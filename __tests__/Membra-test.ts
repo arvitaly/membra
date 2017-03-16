@@ -1,7 +1,7 @@
 import { toGlobalId } from "graphql-relay";
 import schema from "./../__fixtures__/schema2";
+import Relay, { IResolver } from "./../Membra";
 import QueryParser from "./../QueryParser";
-import Relay, { IResolver } from "./../Relay";
 
 describe("Relay tests", () => {
     it("live", async () => {

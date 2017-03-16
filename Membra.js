@@ -1,52 +1,47 @@
-import { Fields, fromQuery } from "graphql-fields-info";
-import onemitter, { Onemitter } from "onemitter";
-import { IQuery } from "./typings";
-export interface IResolver {
-    fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
-    unsubscribe(id: string): Promise<void>;
-}
-export interface IQueryResult {
-    id: string;
-    value: any;
-    ids: string[];
-    query: IQuery;
-    vars: any;
-    isRemoved: boolean;
-    onemitter: Onemitter<any>;
-    remove: () => void;
-}
-export interface IRelayClient {
-    live(query: IQuery, vars?: any): Promise<IQueryResult>;
-}
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const onemitter_1 = require("onemitter");
 // interface ILiveQuery extends Onemitter<any> { }
-class Relay {
-    protected data: { [index: string]: IQueryResult } = {};
-    protected id = 0;
-    constructor(protected resolver: IResolver) { }
-    public async live(query: IQuery, vars?: any): Promise<IQueryResult> {
-        const id = this.getNewId();
-        const o = onemitter();
-        this.data[id] = {
-            id,
-            value: null,
-            ids: [],
-            vars,
-            query,
-            isRemoved: false,
-            onemitter: o,
-            remove: async () => {
-                this.data[id].isRemoved = true;
-                o.removeAllListeners();
-                await this.resolver.unsubscribe(id);
-            },
-        };
-        await this.fillQuery(this.data[id]);
-        setTimeout(() => {
-            o.emit(this.data[id].value);
-        });
-        return this.data[id];
+class Membra {
+    constructor(resolver) {
+        this.resolver = resolver;
+        this.data = {};
+        this.id = 0;
     }
-    public addNode(dataId: string, globalId: string, value: any) {
+    live(query, vars) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = this.getNewId();
+            const o = onemitter_1.default();
+            this.data[id] = {
+                id,
+                value: null,
+                ids: [],
+                vars,
+                query,
+                isRemoved: false,
+                onemitter: o,
+                remove: () => __awaiter(this, void 0, void 0, function* () {
+                    this.data[id].isRemoved = true;
+                    o.removeAllListeners();
+                    yield this.resolver.unsubscribe(id);
+                }),
+            };
+            yield this.fillQuery(this.data[id]);
+            setTimeout(() => {
+                o.emit(this.data[id].value);
+            });
+            return this.data[id];
+        });
+    }
+    addNode(dataId, globalId, value) {
         if (this.data[dataId].isRemoved) {
             return;
         }
@@ -62,7 +57,7 @@ class Relay {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
         });
     }
-    public updateNode(dataId: string, globalId: string, value: any) {
+    updateNode(dataId, globalId, value) {
         if (this.data[dataId].isRemoved) {
             return;
         }
@@ -71,8 +66,9 @@ class Relay {
         const rootNode = this.data[dataId].value[root][connection];
         if (this.data[dataId].query.type === "node") {
             this.fillNode(rootNode, value, this.data[dataId].query.nodeFields);
-        } else {
-            rootNode.edges.filter((edge: any) => edge.node.id === globalId).map((edge: any) => {
+        }
+        else {
+            rootNode.edges.filter((edge) => edge.node.id === globalId).map((edge) => {
                 this.fillNode(edge.node, value, this.data[dataId].query.nodeFields);
             });
         }
@@ -80,21 +76,25 @@ class Relay {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
         });
     }
-    public async restoreAllLive() {
-        return Promise.all(Object.keys(this.data).map(async (id) => {
-            await this.fillQuery(this.data[id]);
-            setTimeout(() => {
-                this.data[id].onemitter.emit(this.data[id].value);
-            });
-        }));
+    restoreAllLive() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return Promise.all(Object.keys(this.data).map((id) => __awaiter(this, void 0, void 0, function* () {
+                yield this.fillQuery(this.data[id]);
+                setTimeout(() => {
+                    this.data[id].onemitter.emit(this.data[id].value);
+                });
+            })));
+        });
     }
-    protected async fillQuery(data: IQueryResult) {
-        const value = await this.resolver.fetch(data.query.text, data.vars, data.id);
-        const ids = this.getIds(value, data.query.fields);
-        data.value = value;
-        data.ids = ids;
+    fillQuery(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const value = yield this.resolver.fetch(data.query.text, data.vars, data.id);
+            const ids = this.getIds(value, data.query.fields);
+            data.value = value;
+            data.ids = ids;
+        });
     }
-    protected fillNode(source: any, updatings: any, fields: Fields) {
+    fillNode(source, updatings, fields) {
         fields.map((field) => {
             if (typeof (updatings[field.name]) !== "undefined") {
                 if (field.fields.length > 0) {
@@ -104,7 +104,8 @@ class Relay {
                         }
                         this.fillNode(source[field.name], updatings[field.name], field.fields);
                     }
-                } else {
+                }
+                else {
                     if (field.name !== "id") {
                         source[field.name] = updatings[field.name];
                     }
@@ -112,8 +113,8 @@ class Relay {
             }
         });
     }
-    protected getIds(data: any, fields: Fields) {
-        let ids: string[] = [];
+    getIds(data, fields) {
+        let ids = [];
         fields.map((field) => {
             if (field.isConnection) {
                 ids = ids.concat(this.getIdsFromConnection(data[field.name], field.fields));
@@ -126,8 +127,8 @@ class Relay {
         });
         return ids;
     }
-    protected getIdsFromConnection(data: any, fields: Fields) {
-        const ids: string[] = [];
+    getIdsFromConnection(data, fields) {
+        const ids = [];
         const edgesField = fields.find((f) => f.name === "edges");
         if (!edgesField) {
             throw new Error("Not found edges field in connection");
@@ -137,14 +138,14 @@ class Relay {
             throw new Error("Not found node field in connection");
         }
         // TEMPORARY CHANGE to FLAT getIds, need recoursivelly
-        return data.edges.map((edge: any) => {
+        return data.edges.map((edge) => {
             // ids = ids.concat(this.getIds(edge.node, nodeField.fields));
             return edge.node.id;
         });
         // return ids;
     }
-    protected getNewId() {
+    getNewId() {
         return "" + ++this.id;
     }
 }
-export default Relay;
+exports.default = Membra;

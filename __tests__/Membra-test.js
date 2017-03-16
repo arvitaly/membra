@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_relay_1 = require("graphql-relay");
 const schema2_1 = require("./../__fixtures__/schema2");
+const Membra_1 = require("./../Membra");
 const QueryParser_1 = require("./../QueryParser");
-const Relay_1 = require("./../Relay");
 describe("Relay tests", () => {
     it("live", () => __awaiter(this, void 0, void 0, function* () {
         const parser = new QueryParser_1.default(schema2_1.default);
@@ -55,7 +55,7 @@ describe("Relay tests", () => {
             }),
         };
         const globalId2 = graphql_relay_1.toGlobalId("Model1", "533");
-        const relay = new Relay_1.default(resolver);
+        const relay = new Membra_1.default(resolver);
         const data = yield relay.live(query);
         let result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();

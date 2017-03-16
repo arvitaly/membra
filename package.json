@@ -1,7 +1,7 @@
 {
   "name": "membra",
-  "version": "0.0.0",
-  "description": "Abstract GraphQL-Relay lib for use with other adapters",
+  "version": "0.0.1",
+  "description": "Abstract GraphQL-client for usage with other adapters",
   "main": "index.js",
   "scripts": {
     "test": "tsc && tslint --project=tsconfig.json && jest --verbose --coverage",
