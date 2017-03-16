@@ -5,27 +5,27 @@ export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
     unsubscribe(id: string): Promise<void>;
 }
-export interface IQueryResult {
+export interface IQueryResult<T> {
     id: string;
     value: any;
     ids: string[];
-    query: IQuery;
+    query: IQuery<T>;
     vars: any;
     isRemoved: boolean;
     onemitter: Onemitter<any>;
     remove: () => void;
 }
 export interface IMembraClient {
-    live(query: IQuery, vars?: any): Promise<IQueryResult>;
+    live<T>(query: IQuery<T>, vars?: any): Promise<IQueryResult<T>>;
 }
 // interface ILiveQuery extends Onemitter<any> { }
 class Membra {
-    protected data: { [index: string]: IQueryResult } = {};
+    protected data: { [index: string]: IQueryResult<any> } = {};
     protected id = 0;
     constructor(protected resolver: IResolver) { }
-    public async live(query: IQuery, vars?: any): Promise<IQueryResult> {
+    public async live<T>(query: IQuery<T>, vars?: any): Promise<IQueryResult<T>> {
         const id = this.getNewId();
-        const o = onemitter();
+        const o = onemitter<T>();
         this.data[id] = {
             id,
             value: null,
@@ -88,7 +88,7 @@ class Membra {
             });
         }));
     }
-    protected async fillQuery(data: IQueryResult) {
+    protected async fillQuery(data: IQueryResult<any>) {
         const value = await this.resolver.fetch(data.query.text, data.vars, data.id);
         const ids = this.getIds(value, data.query.fields);
         data.value = value;

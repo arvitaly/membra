@@ -3,7 +3,7 @@ import { Fields, fromQuery, GraphQLFieldsInfo } from "graphql-fields-info";
 import { IQuery } from "./typings";
 class QueryParser {
     constructor(protected schema: GraphQLSchema) { }
-    public parse(literals: TemplateStringsArray, ...placeholders: any[]): IQuery {
+    public parse<T>(literals: TemplateStringsArray, ...placeholders: any[]): IQuery<T> {
         const query: string = literals.join("");
         const fieldsInfo = fromQuery(query, this.schema);
         this.addIds(fieldsInfo.getFields());

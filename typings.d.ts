@@ -1,5 +1,5 @@
 import { Fields } from "graphql-fields-info";
-export interface IQuery {
+export interface IQuery<T> {
     text: string;
     fields: Fields;
     nodeFields: Fields;
