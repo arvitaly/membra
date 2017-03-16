@@ -1,5 +1,5 @@
 {
-  "name": "relay-common",
+  "name": "membra",
   "version": "0.0.15",
   "description": "Abstract GraphQL-Relay lib for use with other adapters",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arvitaly/relay-common.git"
+    "url": "git+https://github.com/arvitaly/membra.git"
   },
   "keywords": [
     "relay",
@@ -18,9 +18,9 @@
   "author": "arvitaly",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arvitaly/relay-common/issues"
+    "url": "https://github.com/arvitaly/membra/issues"
   },
-  "homepage": "https://github.com/arvitaly/relay-common#readme",
+  "homepage": "https://github.com/arvitaly/membra#readme",
   "jest": {
     "automock": false
   },
