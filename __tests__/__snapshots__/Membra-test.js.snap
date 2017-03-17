@@ -111,6 +111,27 @@ Object {
 
 exports[`Relay tests live 5`] = `
 Object {
+  "viewer": Object {
+    "id": "Vmlld2VyOg==",
+    "model1": Object {
+      "edges": Array [
+        Object {
+          "node": Object {
+            "field1": "field1Value2",
+            "id": "TW9kZWwxOjUzMw==",
+            "model2": Object {
+              "field2": 18,
+            },
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Relay tests live 6`] = `
+Object {
   "q": "query Q1 {
   viewer {
     model1 {
@@ -134,7 +155,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 6`] = `
+exports[`Relay tests live 7`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",

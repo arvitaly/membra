@@ -59,12 +59,19 @@ describe("Relay tests", () => {
         const data = yield relay.live(query);
         let result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        // Test add node
         relay.addNode(data.id, globalId2, { field1: "field1Value2", model2: { field2: 18 }, excess1: "hi" });
         result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        // Test update node
         relay.updateNode(data.id, globalId1, { field1: "field1Value3", model2: { field2: 19 }, excess2: "hi2" });
         result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();
+        // Test remove node
+        relay.removeNode(data.id, globalId1);
+        result = yield data.onemitter.wait();
+        expect(result).toMatchSnapshot();
+        // Test unsubscribe
         yield relay.restoreAllLive();
         result = yield data.onemitter.wait();
         expect(result).toMatchSnapshot();

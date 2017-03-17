@@ -76,6 +76,21 @@ class Membra {
             this.data[dataId].onemitter.emit(this.data[dataId].value);
         });
     }
+    removeNode(dataId, globalId) {
+        if (this.data[dataId].isRemoved) {
+            return;
+        }
+        this.data[dataId].ids = this.data[dataId].ids.filter((id) => id !== globalId);
+        const root = Object.keys(this.data[dataId].value)[0];
+        const connection = Object.keys(this.data[dataId].value[root]).filter((o) => o !== "id")[0];
+        this.data[dataId].value[root][connection].edges =
+            this.data[dataId].value[root][connection].edges.filter((node) => {
+                return node.node.id !== globalId;
+            });
+        setTimeout(() => {
+            this.data[dataId].onemitter.emit(this.data[dataId].value);
+        });
+    }
     restoreAllLive() {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.all(Object.keys(this.data).map((id) => __awaiter(this, void 0, void 0, function* () {
