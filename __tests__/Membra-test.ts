@@ -4,7 +4,48 @@ import Relay, { IResolver } from "./../Membra";
 import QueryParser from "./../QueryParser";
 
 describe("Relay tests", () => {
-    it("live", async () => {
+    it("live node", async () => {
+        const globalId1 = toGlobalId("Model1", "15");
+        const parser = new QueryParser(schema);
+        const query = parser.parse`query Q1{
+            node(id: "${globalId1}"){
+                ...F1
+            }
+        }
+        fragment F1 on Model1{
+            field1
+            model2{
+                field2
+            }                
+        }        
+        `;
+        const unsubscribe = jest.fn();
+        const resolver: IResolver = {
+            unsubscribe,
+            fetch: jest.fn((q: string, vars?: any, subscriptionId?: string) => {
+                expect({ q, vars, subscriptionId }).toMatchSnapshot();
+                return {
+                    node: {
+                        id: globalId1,
+                        field1: "field1Value",
+                        model2: {
+                            id: toGlobalId("Model2", "100"),
+                            field2: 15,
+                        },
+                    },
+                };
+            }),
+        };
+        const relay = new Relay(resolver);
+        const data = await relay.live(query);
+        // First query
+        let result = await data.onemitter.wait();
+        expect(result).toMatchSnapshot();
+        relay.updateNode(data.id, globalId1, { field1: "field1Value4" });
+        result = await data.onemitter.wait();
+        expect(result).toMatchSnapshot();
+    });
+    it("live connection", async () => {
         const parser = new QueryParser(schema);
         const query = parser.parse`            query Q1{
                 viewer{

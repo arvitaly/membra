@@ -71,6 +71,8 @@ class Membra {
         const rootNode = this.data[dataId].value[root][connection];
         if (this.data[dataId].query.type === "node") {
             this.fillNode(rootNode, value, this.data[dataId].query.nodeFields);
+        } else if (this.data[dataId].query.type === "nodeInterface") {
+            this.fillNode(this.data[dataId].value[root], value, this.data[dataId].query.nodeFields);
         } else {
             rootNode.edges.filter((edge: any) => edge.node.id === globalId).map((edge: any) => {
                 this.fillNode(edge.node, value, this.data[dataId].query.nodeFields);

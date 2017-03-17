@@ -13,7 +13,48 @@ const schema2_1 = require("./../__fixtures__/schema2");
 const Membra_1 = require("./../Membra");
 const QueryParser_1 = require("./../QueryParser");
 describe("Relay tests", () => {
-    it("live", () => __awaiter(this, void 0, void 0, function* () {
+    it("live node", () => __awaiter(this, void 0, void 0, function* () {
+        const globalId1 = graphql_relay_1.toGlobalId("Model1", "15");
+        const parser = new QueryParser_1.default(schema2_1.default);
+        const query = parser.parse `query Q1{
+            node(id: "${globalId1}"){
+                ...F1
+            }
+        }
+        fragment F1 on Model1{
+            field1
+            model2{
+                field2
+            }                
+        }        
+        `;
+        const unsubscribe = jest.fn();
+        const resolver = {
+            unsubscribe,
+            fetch: jest.fn((q, vars, subscriptionId) => {
+                expect({ q, vars, subscriptionId }).toMatchSnapshot();
+                return {
+                    node: {
+                        id: globalId1,
+                        field1: "field1Value",
+                        model2: {
+                            id: graphql_relay_1.toGlobalId("Model2", "100"),
+                            field2: 15,
+                        },
+                    },
+                };
+            }),
+        };
+        const relay = new Membra_1.default(resolver);
+        const data = yield relay.live(query);
+        // First query
+        let result = yield data.onemitter.wait();
+        expect(result).toMatchSnapshot();
+        relay.updateNode(data.id, globalId1, { field1: "field1Value4" });
+        result = yield data.onemitter.wait();
+        expect(result).toMatchSnapshot();
+    }));
+    it("live connection", () => __awaiter(this, void 0, void 0, function* () {
         const parser = new QueryParser_1.default(schema2_1.default);
         const query = parser.parse `            query Q1{
                 viewer{

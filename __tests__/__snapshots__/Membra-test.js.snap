@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Relay tests live 1`] = `
+exports[`Relay tests live connection 1`] = `
 Object {
   "q": "query Q1 {
   viewer {
@@ -25,7 +25,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 2`] = `
+exports[`Relay tests live connection 2`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -47,7 +47,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 3`] = `
+exports[`Relay tests live connection 3`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -78,7 +78,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 4`] = `
+exports[`Relay tests live connection 4`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -109,7 +109,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 5`] = `
+exports[`Relay tests live connection 5`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -130,7 +130,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 6`] = `
+exports[`Relay tests live connection 6`] = `
 Object {
   "q": "query Q1 {
   viewer {
@@ -155,7 +155,7 @@ Object {
 }
 `;
 
-exports[`Relay tests live 7`] = `
+exports[`Relay tests live connection 7`] = `
 Object {
   "viewer": Object {
     "id": "Vmlld2VyOg==",
@@ -172,6 +172,51 @@ Object {
           },
         },
       ],
+    },
+  },
+}
+`;
+
+exports[`Relay tests live node 1`] = `
+Object {
+  "q": "query Q1 {
+  node(id: \\"\\") {
+    ...F1
+  }
+}
+fragment F1 on Model1 {
+  field1
+  model2 {
+    field2
+    id
+  }
+}",
+  "subscriptionId": "1",
+  "vars": undefined,
+}
+`;
+
+exports[`Relay tests live node 2`] = `
+Object {
+  "node": Object {
+    "field1": "field1Value",
+    "id": "TW9kZWwxOjE1",
+    "model2": Object {
+      "field2": 15,
+      "id": "TW9kZWwyOjEwMA==",
+    },
+  },
+}
+`;
+
+exports[`Relay tests live node 3`] = `
+Object {
+  "node": Object {
+    "field1": "field1Value4",
+    "id": "TW9kZWwxOjE1",
+    "model2": Object {
+      "field2": 15,
+      "id": "TW9kZWwyOjEwMA==",
     },
   },
 }
