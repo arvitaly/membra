@@ -2,7 +2,6 @@
 
 Abstract GraphQL-client library for usage with other adapters
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/arvitaly/membra.svg)](https://greenkeeper.io/)
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
