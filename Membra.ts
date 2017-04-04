@@ -48,7 +48,7 @@ class Membra {
         return this.data[id];
     }
     public async execute<T>(execution: IExecution<T>): Promise<T> {
-        const data = this.resolver.fetch(execution.schemaObj.getQuery());
+        const data = await this.resolver.fetch(execution.schemaObj.getQuery());
         return execution.schemaObj.fillData(data, execution.executor);
     }
     public addNode(dataId: string, globalId: string, value: any) {
