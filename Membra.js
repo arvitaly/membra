@@ -43,7 +43,8 @@ class Membra {
     }
     execute(execution) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.resolver.fetch(execution.schemaObj.getQuery());
+            const data = this.resolver.fetch(execution.schemaObj.getQuery());
+            return execution.schemaObj.fillData(data, execution.executor);
         });
     }
     addNode(dataId, globalId, value) {

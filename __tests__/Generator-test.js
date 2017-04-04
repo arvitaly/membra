@@ -12,10 +12,13 @@ fdescribe("Generator", () => {
                 before: "15",
                 last: 10,
             }).edges.map(({ node }) => {
+                const model2 = node.model2({
+                    where: { field1: "test" },
+                });
                 return {
                     f: node.field1,
-                    x: node.model2.field2.toExponential(),
-                    m: node.model2.id.big(),
+                    x: model2.field2.toFixed(),
+                    y: model2.id.toLowerCase(),
                 };
             });
             return {
@@ -25,5 +28,22 @@ fdescribe("Generator", () => {
         });
         const query = generator.getQuery(execution);
         expect(query).toMatchSnapshot();
+        const result = execution.schemaObj.fillData({
+            viewer: {
+                id: "15",
+                model1: {
+                    edges: [{
+                            node: {
+                                field1: "field1Value",
+                                model2: {
+                                    field2: 100.888,
+                                    id: "11",
+                                },
+                            },
+                        }],
+                },
+            },
+        }, execution.executor);
+        expect(result).toMatchSnapshot();
     });
 });

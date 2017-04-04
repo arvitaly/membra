@@ -12,6 +12,7 @@ class Generator {
         executor(schemaObj);
         return {
             schemaObj,
+            executor,
         };
     }
     getQuery(execution) {
@@ -53,6 +54,12 @@ class SchemaObj {
     getQuery() {
         return this.getQueryForObject("query", "query", this.types.Query);
     }
+    fillData(data, executor) {
+        const rootQuery = new SchemaType("query", this.types.Query, this, data);
+        return executor({
+            query: rootQuery,
+        });
+    }
     getQueryForObject(parentName, name, obj, level = 1) {
         const isFunction = typeof (this.paths[parentName]) !== "undefined" && this.paths[parentName] !== true;
         let q = pad(name, level) + (isFunction ? "(" + (this.paths[parentName] ? this.prepareParams(this.paths[parentName]) : "") + ")" : "") + "{\n";
@@ -74,6 +81,9 @@ class SchemaObj {
     }
     prepareParams(params) {
         return Object.keys(params).map((key) => {
+            if (typeof (params[key]) === "object") {
+                return key + ": " + this.prepareParams(params[key]);
+            }
             return key + ": " + JSON.stringify(params[key]);
         }).join(", ");
     }
@@ -83,37 +93,53 @@ function pad(str, n, symbol = "    ") {
     return new Array(n).join(symbol) + str;
 }
 class SchemaType {
-    constructor(parentName, config, schemaObj) {
+    constructor(parentName, config, schemaObj, data) {
         this.parentName = parentName;
         this.config = config;
         this.schemaObj = schemaObj;
+        this.data = data;
         this.name = config.name;
         config.fields.map((f) => {
             let value;
             if (f.type instanceof graphql_1.GraphQLObjectType) {
-                value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
-                if (f.isArray) {
-                    value = [value];
+                if (this.data) {
+                    if (f.isArray) {
+                        value = data[f.name].map((v) => new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, v));
+                    }
+                    else {
+                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, data[f.name]);
+                    }
+                }
+                else {
+                    value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
+                    if (f.isArray) {
+                        value = [value];
+                    }
                 }
             }
             else if (f.type instanceof graphql_1.GraphQLScalarType) {
-                switch (f.type) {
-                    case g.GraphQLString:
-                        value = " ";
-                        break;
-                    case g.GraphQLInt:
-                        value = 1;
-                        break;
-                    case g.GraphQLFloat:
-                        value = 1;
-                        break;
-                    case g.GraphQLBoolean:
-                        value = true;
-                        break;
-                    case g.GraphQLID:
-                        value = "ID";
-                        break;
-                    default:
+                if (data) {
+                    value = data[f.name];
+                }
+                else {
+                    switch (f.type) {
+                        case g.GraphQLString:
+                            value = " ";
+                            break;
+                        case g.GraphQLInt:
+                            value = 1;
+                            break;
+                        case g.GraphQLFloat:
+                            value = 1;
+                            break;
+                        case g.GraphQLBoolean:
+                            value = true;
+                            break;
+                        case g.GraphQLID:
+                            value = "ID";
+                            break;
+                        default:
+                    }
                 }
             }
             Object.defineProperty(this, f.name, {

@@ -6,6 +6,7 @@ import * as g from "graphql";
 import { IGraphQLObjectTypeFieldConfig, Mapper } from "graphql-schema-map";
 export interface IExecution<T> {
     schemaObj: SchemaObj;
+    executor: (schemaObj: any) => any;
 }
 export class Generator<S>{
     constructor(protected schema: GraphQLSchema) { }
@@ -14,6 +15,7 @@ export class Generator<S>{
         executor(schemaObj as any);
         return {
             schemaObj,
+            executor,
         };
     }
     public getQuery(execution: IExecution<any>): string {
@@ -66,6 +68,12 @@ export class SchemaObj {
     public getQuery(): string {
         return this.getQueryForObject("query", "query", this.types.Query);
     }
+    public fillData(data: any, executor: (schemaObj: any) => any): any {
+        const rootQuery = new SchemaType("query", this.types.Query, this, data);
+        return executor({
+            query: rootQuery,
+        });
+    }
     public getQueryForObject(
         parentName: string, name: string, obj: ISchemaObjectConfig,
         level = 1): string {
@@ -89,8 +97,11 @@ export class SchemaObj {
         q += qs.join(",\n") + "\n" + pad("}", level);
         return q;
     }
-    protected prepareParams(params: any) {
+    protected prepareParams(params: any): any {
         return Object.keys(params).map((key) => {
+            if (typeof (params[key]) === "object") {
+                return key + ": " + this.prepareParams(params[key]);
+            }
             return key + ": " + JSON.stringify(params[key]);
         }).join(", ");
     }
@@ -100,33 +111,51 @@ function pad(str: string, n: number, symbol: string = "    ") {
 }
 class SchemaType {
     protected name: string;
-    constructor(protected parentName: string, protected config: ISchemaObjectConfig, protected schemaObj: SchemaObj) {
+    constructor(
+        protected parentName: string, protected config: ISchemaObjectConfig, protected schemaObj: SchemaObj,
+        protected data?: any) {
         this.name = config.name;
         config.fields.map((f) => {
             let value: any;
             if (f.type instanceof GraphQLObjectType) {
-                value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
-                if (f.isArray) {
-                    value = [value];
+                if (this.data) {
+                    if (f.isArray) {
+                        value = data[f.name].map((v: any) =>
+                            new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
+                                v));
+                    } else {
+                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
+                            data[f.name]);
+                    }
+                } else {
+                    value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
+                    if (f.isArray) {
+                        value = [value];
+                    }
                 }
+
             } else if (f.type instanceof GraphQLScalarType) {
-                switch (f.type) {
-                    case g.GraphQLString:
-                        value = " ";
-                        break;
-                    case g.GraphQLInt:
-                        value = 1;
-                        break;
-                    case g.GraphQLFloat:
-                        value = 1;
-                        break;
-                    case g.GraphQLBoolean:
-                        value = true;
-                        break;
-                    case g.GraphQLID:
-                        value = "ID";
-                        break;
-                    default:
+                if (data) {
+                    value = data[f.name];
+                } else {
+                    switch (f.type) {
+                        case g.GraphQLString:
+                            value = " ";
+                            break;
+                        case g.GraphQLInt:
+                            value = 1;
+                            break;
+                        case g.GraphQLFloat:
+                            value = 1;
+                            break;
+                        case g.GraphQLBoolean:
+                            value = true;
+                            break;
+                        case g.GraphQLID:
+                            value = "ID";
+                            break;
+                        default:
+                    }
                 }
             }
             Object.defineProperty(this, f.name, {

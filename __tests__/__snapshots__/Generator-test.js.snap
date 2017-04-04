@@ -8,7 +8,7 @@ exports[`Generator query 1`] = `
             edges{
                 node{
                     field1,
-                    model2{
+                    model2(where: field1: \\"test\\"){
                         field2,
                         id
                     }
@@ -17,4 +17,17 @@ exports[`Generator query 1`] = `
         }
     }
 }"
+`;
+
+exports[`Generator query 2`] = `
+Object {
+  "id": "15",
+  "items": Array [
+    Object {
+      "f": "field1Value",
+      "x": "101",
+      "y": "11",
+    },
+  ],
+}
 `;
