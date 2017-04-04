@@ -47,7 +47,7 @@ export interface IModel1model2Params {
     where: IWhere;
 }
 export interface IWhere {
-    field1: string;
+    field1: string[];
 }
 export interface IModel2 {
     field2: number;

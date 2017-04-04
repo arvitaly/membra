@@ -33,7 +33,7 @@ fdescribe("Generator", () => {
                 last: 10,
             }).edges.map(({ node }) => {
                 const model2 = node.model2({
-                    where: { field1: "test" },
+                    where: { field1: ["test"] },
                 });
                 return {
                     f: node.field1,

@@ -41,7 +41,7 @@ const where = new g.GraphQLInputObjectType({
     name: "Where",
     fields: {
         field1: {
-            type: g.GraphQLString,
+            type: new g.GraphQLList(g.GraphQLString),
         },
     },
 });
