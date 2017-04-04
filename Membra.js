@@ -41,6 +41,11 @@ class Membra {
             return this.data[id];
         });
     }
+    execute(execution) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.resolver.fetch(execution.schemaObj.getQuery());
+        });
+    }
     addNode(dataId, globalId, value) {
         if (this.data[dataId].isRemoved) {
             return;

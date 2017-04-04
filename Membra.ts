@@ -1,5 +1,6 @@
 import { Fields, fromQuery } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
+import { IExecution } from "./Generator";
 import { IQuery } from "./typings";
 export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
@@ -45,6 +46,9 @@ class Membra {
             o.emit(this.data[id].value);
         });
         return this.data[id];
+    }
+    public async execute<T>(execution: IExecution<T>): Promise<T> {
+        return this.resolver.fetch(execution.schemaObj.getQuery());
     }
     public addNode(dataId: string, globalId: string, value: any) {
         if (this.data[dataId].isRemoved) {

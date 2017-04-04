@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generator query 1`] = `
+"query{
+    viewer{
+        id,
+        model1(first: 10, after: \\"15\\", before: \\"15\\", last: 10){
+            edges{
+                node{
+                    field1,
+                    model2{
+                        field2,
+                        id
+                    }
+                }
+            }
+        }
+    }
+}"
+`;

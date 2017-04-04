@@ -165,7 +165,32 @@ Object {
       "args": Array [],
       "fields": Array [
         Object {
-          "args": Array [],
+          "args": Array [
+            Object {
+              "defaultValue": undefined,
+              "description": null,
+              "name": "after",
+              "type": "String",
+            },
+            Object {
+              "defaultValue": undefined,
+              "description": null,
+              "name": "first",
+              "type": "Int",
+            },
+            Object {
+              "defaultValue": undefined,
+              "description": null,
+              "name": "before",
+              "type": "String",
+            },
+            Object {
+              "defaultValue": undefined,
+              "description": null,
+              "name": "last",
+              "type": "Int",
+            },
+          ],
           "fields": Array [
             Object {
               "args": Array [],
