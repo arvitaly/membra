@@ -109,7 +109,7 @@ class SchemaObj {
     prepareParams(params) {
         return Object.keys(params).map((key) => {
             if (typeof (params[key]) === "object") {
-                return key + ": " + this.prepareParams(params[key]);
+                return key + ": {" + this.prepareParams(params[key]) + "}";
             }
             return key + ": " + JSON.stringify(params[key]);
         }).join(", ");
