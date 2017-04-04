@@ -2,7 +2,7 @@
 
 exports[`Generator mutation 1`] = `
 "mutation{
-    createModel1(input: setField1: field1: \\"11\\"){
+    createModel1(input: {setField1: {field1: \\"11\\"}}){
         test
     }
 }"
@@ -18,7 +18,7 @@ exports[`Generator query 1`] = `
             edges{
                 node{
                     field1,
-                    model2(where: field1: \\"test\\"){
+                    model2(where: {field1: \\"test\\"}){
                         field2,
                         id
                     }
