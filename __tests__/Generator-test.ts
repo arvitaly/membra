@@ -1,7 +1,28 @@
-import { IQuery } from "./../__fixtures__/interfaces2";
+import { IMutation, IQuery } from "./../__fixtures__/interfaces2";
 import schema from "./../__fixtures__/schema2";
 import Generator from "./../Generator";
 fdescribe("Generator", () => {
+    it("mutation", () => {
+        const generator = new Generator<{ mutation: IMutation }>(schema);
+        const execution = generator.generate(({ mutation }) => {
+            const p = mutation.createModel1({
+                input: {
+                    setField1: {
+                        field1: "11",
+                    },
+                },
+            });
+            return p.test + "Hi";
+        });
+        const query = generator.getQuery(execution);
+        expect(query).toMatchSnapshot();
+        const result = execution.schemaObj.fillData({
+            createModel1: {
+                test: "Stop",
+            },
+        }, execution.executor);
+        expect(result).toMatchSnapshot();
+    });
     it("query", () => {
         const generator = new Generator<{ query: IQuery }>(schema);
         const execution = generator.generate((schemaObj) => {

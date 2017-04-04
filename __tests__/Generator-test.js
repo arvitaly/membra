@@ -3,6 +3,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schema2_1 = require("./../__fixtures__/schema2");
 const Generator_1 = require("./../Generator");
 fdescribe("Generator", () => {
+    it("mutation", () => {
+        const generator = new Generator_1.default(schema2_1.default);
+        const execution = generator.generate(({ mutation }) => {
+            const p = mutation.createModel1({
+                input: {
+                    setField1: {
+                        field1: "11",
+                    },
+                },
+            });
+            return p.test + "Hi";
+        });
+        const query = generator.getQuery(execution);
+        expect(query).toMatchSnapshot();
+        const result = execution.schemaObj.fillData({
+            createModel1: {
+                test: "Stop",
+            },
+        }, execution.executor);
+        expect(result).toMatchSnapshot();
+    });
     it("query", () => {
         const generator = new Generator_1.default(schema2_1.default);
         const execution = generator.generate((schemaObj) => {

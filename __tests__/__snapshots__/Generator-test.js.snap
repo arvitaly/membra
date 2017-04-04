@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Generator mutation 1`] = `
+"mutation{
+    createModel1(input: setField1: field1: \\"11\\"){
+        test
+    }
+}"
+`;
+
+exports[`Generator mutation 2`] = `"StopHi"`;
+
 exports[`Generator query 1`] = `
 "query{
     viewer{

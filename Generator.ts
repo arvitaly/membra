@@ -38,6 +38,8 @@ interface ISchemaObjectConfig {
 // tslint:disable:max-classes-per-file
 export class SchemaObj {
     public query: any;
+    public mutation: any;
+    public queryType: "query" | "mutation" = "query";
     public types: { [index: string]: ISchemaObjectConfig } = {};
     protected paths: {
         [index: string]: any,
@@ -59,20 +61,44 @@ export class SchemaObj {
             };
         });
         mapper.map();
-        this.query = new SchemaType("query", this.types.Query, this);
+        const query = new SchemaType("query", this.types.Query, this);
+        const mutation = new SchemaType("mutation", this.types.Mutation, this);
+        Object.defineProperty(this, "query", {
+            get: () => {
+                this.queryType = "query";
+                return query;
+            },
+        });
+        Object.defineProperty(this, "mutation", {
+            get: () => {
+                this.queryType = "mutation";
+                return mutation;
+            },
+        });
     }
 
     public addPath(path: string, params?: any) {
         this.paths[path] = params;
     }
     public getQuery(): string {
-        return this.getQueryForObject("query", "query", this.types.Query);
+        if (this.queryType === "query") {
+            return this.getQueryForObject("query", "query", this.types.Query);
+        } else {
+            return this.getQueryForObject("mutation", "mutation", this.types.Mutation);
+        }
     }
     public fillData(data: any, executor: (schemaObj: any) => any): any {
-        const rootQuery = new SchemaType("query", this.types.Query, this, data);
-        return executor({
-            query: rootQuery,
-        });
+        if (this.queryType === "query") {
+            const rootQuery = new SchemaType("query", this.types.Query, this, data);
+            return executor({
+                query: rootQuery,
+            });
+        } else {
+            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, data);
+            return executor({
+                mutation: rootMutation,
+            });
+        }
     }
     public getQueryForObject(
         parentName: string, name: string, obj: ISchemaObjectConfig,

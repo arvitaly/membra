@@ -3,6 +3,38 @@ import { connectionArgs, nodeDefinitions } from "graphql-relay";
 const nodeInterface = nodeDefinitions(() => {/* */ }, () => {
     return null as any;
 });
+const createModel1 = new g.GraphQLObjectType({
+    name: "CreateModel1Payload",
+    fields: {
+        test: { type: g.GraphQLString },
+    },
+});
+const setField1 = new g.GraphQLInputObjectType({
+    name: "CreateModel1InputSetField1",
+    fields: {
+        field1: { type: g.GraphQLString },
+    },
+});
+const mutation = new g.GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+        createModel1: {
+            args: {
+                input: {
+                    type: new g.GraphQLInputObjectType({
+                        name: "CreateMode1lInput",
+                        fields: {
+                            setField1: {
+                                type: setField1,
+                            },
+                        },
+                    }),
+                },
+            },
+            type: createModel1,
+        },
+    },
+});
 const where = new g.GraphQLInputObjectType({
     name: "Where",
     fields: {
@@ -12,6 +44,7 @@ const where = new g.GraphQLInputObjectType({
     },
 });
 const schema = new g.GraphQLSchema({
+    mutation,
     query: new g.GraphQLObjectType({
         name: "Query",
         fields: {

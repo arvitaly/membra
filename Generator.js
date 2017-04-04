@@ -28,6 +28,7 @@ exports.default = Generator;
 class SchemaObj {
     constructor(schema) {
         this.schema = schema;
+        this.queryType = "query";
         this.types = {};
         this.paths = {};
         const mapper = new graphql_schema_map_1.Mapper(schema, {});
@@ -46,19 +47,45 @@ class SchemaObj {
             };
         });
         mapper.map();
-        this.query = new SchemaType("query", this.types.Query, this);
+        const query = new SchemaType("query", this.types.Query, this);
+        const mutation = new SchemaType("mutation", this.types.Mutation, this);
+        Object.defineProperty(this, "query", {
+            get: () => {
+                this.queryType = "query";
+                return query;
+            },
+        });
+        Object.defineProperty(this, "mutation", {
+            get: () => {
+                this.queryType = "mutation";
+                return mutation;
+            },
+        });
     }
     addPath(path, params) {
         this.paths[path] = params;
     }
     getQuery() {
-        return this.getQueryForObject("query", "query", this.types.Query);
+        if (this.queryType === "query") {
+            return this.getQueryForObject("query", "query", this.types.Query);
+        }
+        else {
+            return this.getQueryForObject("mutation", "mutation", this.types.Mutation);
+        }
     }
     fillData(data, executor) {
-        const rootQuery = new SchemaType("query", this.types.Query, this, data);
-        return executor({
-            query: rootQuery,
-        });
+        if (this.queryType === "query") {
+            const rootQuery = new SchemaType("query", this.types.Query, this, data);
+            return executor({
+                query: rootQuery,
+            });
+        }
+        else {
+            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, data);
+            return executor({
+                mutation: rootMutation,
+            });
+        }
     }
     getQueryForObject(parentName, name, obj, level = 1) {
         const isFunction = typeof (this.paths[parentName]) !== "undefined" && this.paths[parentName] !== true;

@@ -1,4 +1,19 @@
 // tslint:disable:member-ordering
+export interface IMutation {
+    createModel1(params?: IMutationcreateModel1Params): ICreateModel1Payload;
+}
+export interface IMutationcreateModel1Params {
+    input: ICreateMode1lInput;
+}
+export interface ICreateMode1lInput {
+    setField1: ICreateModel1InputSetField1;
+}
+export interface ICreateModel1InputSetField1 {
+    field1: string;
+}
+export interface ICreateModel1Payload {
+    test: string;
+}
 export interface IQuery {
     node(params: IQuerynodeParams): any;
     viewer: IViewer;
