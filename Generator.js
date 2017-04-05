@@ -75,13 +75,13 @@ class SchemaObj {
     }
     fillData(data, executor) {
         if (this.queryType === "query") {
-            const rootQuery = new SchemaType("query", this.types.Query, this, data);
+            const rootQuery = new SchemaType("query", this.types.Query, this, true, data);
             return executor({
                 query: rootQuery,
             });
         }
         else {
-            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, data);
+            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, true, data);
             return executor({
                 mutation: rootMutation,
             });
@@ -123,21 +123,22 @@ function pad(str, n, symbol = "    ") {
     return new Array(n).join(symbol) + str;
 }
 class SchemaType {
-    constructor(parentName, config, schemaObj, data) {
+    constructor(parentName, config, schemaObj, isForFill = false, data) {
         this.parentName = parentName;
         this.config = config;
         this.schemaObj = schemaObj;
+        this.isForFill = isForFill;
         this.data = data;
         this.name = config.name;
         config.fields.map((f) => {
             let value;
             if (f.type instanceof graphql_1.GraphQLObjectType) {
-                if (this.data) {
+                if (this.isForFill) {
                     if (f.isArray) {
-                        value = data[f.name].map((v) => new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, v));
+                        value = data ? data[f.name].map((v) => new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, v)) : [];
                     }
                     else {
-                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, data[f.name]);
+                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, data ? data[f.name] : undefined);
                     }
                 }
                 else {
@@ -148,8 +149,8 @@ class SchemaType {
                 }
             }
             else if (f.type instanceof graphql_1.GraphQLScalarType) {
-                if (data) {
-                    value = data[f.name];
+                if (this.isForFill) {
+                    value = data ? data[f.name] : undefined;
                 }
                 else {
                     switch (f.type) {

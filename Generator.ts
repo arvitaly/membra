@@ -89,12 +89,12 @@ export class SchemaObj {
     }
     public fillData(data: any, executor: (schemaObj: any) => any): any {
         if (this.queryType === "query") {
-            const rootQuery = new SchemaType("query", this.types.Query, this, data);
+            const rootQuery = new SchemaType("query", this.types.Query, this, true, data);
             return executor({
                 query: rootQuery,
             });
         } else {
-            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, data);
+            const rootMutation = new SchemaType("mutation", this.types.Mutation, this, true, data);
             return executor({
                 mutation: rootMutation,
             });
@@ -142,19 +142,23 @@ class SchemaType {
     protected name: string;
     constructor(
         protected parentName: string, protected config: ISchemaObjectConfig, protected schemaObj: SchemaObj,
-        protected data?: any) {
+        protected isForFill = false, protected data?: any) {
         this.name = config.name;
         config.fields.map((f) => {
             let value: any;
             if (f.type instanceof GraphQLObjectType) {
-                if (this.data) {
+                if (this.isForFill) {
                     if (f.isArray) {
-                        value = data[f.name].map((v: any) =>
-                            new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
-                                v));
+                        value = data ? data[f.name].map((v: any) =>
+                            new SchemaType(
+                                this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
+                                true,
+                                v)) : [];
                     } else {
-                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
-                            data[f.name]);
+                        value = new SchemaType(
+                            this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
+                            true,
+                            data ? data[f.name] : undefined);
                     }
                 } else {
                     value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
@@ -164,8 +168,8 @@ class SchemaType {
                 }
 
             } else if (f.type instanceof GraphQLScalarType) {
-                if (data) {
-                    value = data[f.name];
+                if (this.isForFill) {
+                    value = data ? data[f.name] : undefined;
                 } else {
                     switch (f.type) {
                         case g.GraphQLString:
