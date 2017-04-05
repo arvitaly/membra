@@ -135,10 +135,10 @@ class SchemaType {
             if (f.type instanceof graphql_1.GraphQLObjectType) {
                 if (this.isForFill) {
                     if (f.isArray) {
-                        value = data ? data[f.name].map((v) => new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, v)) : [];
+                        value = data && data[f.name] ? data[f.name].map((v) => new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, v)) : [];
                     }
                     else {
-                        value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, data ? data[f.name] : undefined);
+                        value = data && data[f.name] ? new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj, true, data[f.name]) : undefined;
                     }
                 }
                 else {

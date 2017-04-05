@@ -149,16 +149,16 @@ class SchemaType {
             if (f.type instanceof GraphQLObjectType) {
                 if (this.isForFill) {
                     if (f.isArray) {
-                        value = data ? data[f.name].map((v: any) =>
+                        value = data && data[f.name] ? data[f.name].map((v: any) =>
                             new SchemaType(
                                 this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
                                 true,
                                 v)) : [];
                     } else {
-                        value = new SchemaType(
+                        value = data && data[f.name] ? new SchemaType(
                             this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj,
                             true,
-                            data ? data[f.name] : undefined);
+                            data[f.name]) : undefined;
                     }
                 } else {
                     value = new SchemaType(this.parentName + "." + f.name, schemaObj.types[f.type.name], schemaObj);
