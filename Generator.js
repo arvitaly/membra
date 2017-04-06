@@ -112,6 +112,9 @@ class SchemaObj {
                 if (Array.isArray(params[key])) {
                     return key + ": [" + params[key].map((a) => JSON.stringify(a)).join(",") + "]";
                 }
+                if (typeof (params[key].toJSON) === "function") {
+                    return key + ": \"" + params[key].toJSON() + "\"";
+                }
                 return key + ": {" + this.prepareParams(params[key]) + "}";
             }
             return key + ": " + JSON.stringify(params[key]);
