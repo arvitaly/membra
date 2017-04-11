@@ -1,4 +1,4 @@
-import { Fields, fromQuery } from "graphql-fields-info";
+import { Fields } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
 import { IExecution } from "./Generator";
 import { IQuery } from "./typings";
@@ -151,7 +151,7 @@ class Membra {
         return ids;
     }
     protected getIdsFromConnection(data: any, fields: Fields) {
-        const ids: string[] = [];
+        // const ids: string[] = [];
         const edgesField = fields.find((f) => f.name === "edges");
         if (!edgesField) {
             throw new Error("Not found edges field in connection");

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Generator mutation 1`] = `
-"mutation{
-    createModel1(input: {setField1: {field1: \\"11\\"}}){
+"mutation {
+    createModel1(input: {setField1: {field1: \\"11\\"}}) {
         test
     }
 }"
@@ -11,20 +11,20 @@ exports[`Generator mutation 1`] = `
 exports[`Generator mutation 2`] = `"StopHi"`;
 
 exports[`Generator query 1`] = `
-"query{
-    viewer{
-        id,
-        model1(first: 10, after: \\"15\\", before: \\"15\\", last: 10){
-            edges{
-                node{
-                    field1,
-                    model2(where: {field1: [\\"test\\"]}){
-                        field2,
+"query {
+    viewer {
+        model1(first: 10, after: \\"15\\", before: \\"15\\", last: 10) {
+            edges {
+                node {
+                    model2(where: {field1: [\\"test\\"]}) {
+                        field2
                         id
                     }
+                    field1
                 }
             }
         }
+        id
     }
 }"
 `;
@@ -40,4 +40,25 @@ Object {
     },
   ],
 }
+`;
+
+exports[`Generator query with same arguments 1`] = `
+"query {
+    viewer {
+        model1(first: 10) {
+            edges {
+                node {
+                    field1
+                }
+            }
+        }
+        f1:model1(first: 20) {
+            edges {
+                node {
+                    field1
+                }
+            }
+        }
+    }
+}"
 `;

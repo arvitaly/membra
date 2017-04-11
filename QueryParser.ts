@@ -1,5 +1,5 @@
 import { FieldNode, GraphQLID, GraphQLNonNull, GraphQLSchema } from "graphql";
-import { Fields, fromQuery, GraphQLFieldsInfo } from "graphql-fields-info";
+import { Fields, fromQuery } from "graphql-fields-info";
 import { IQuery } from "./typings";
 class QueryParser {
     constructor(protected schema: GraphQLSchema) { }

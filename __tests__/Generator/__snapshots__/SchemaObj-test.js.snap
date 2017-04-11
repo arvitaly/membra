@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SchemaObj fill data 1`] = `
+Object {
+  "m1": Array [
+    Object {
+      "field1": "Test",
+      "id": "ID11",
+      "model2": "ID56",
+    },
+  ],
+  "m2": Array [
+    "Field2valueSame",
+  ],
+}
+`;
+
+exports[`SchemaObj get query 1`] = `
+"query {
+    viewer {
+        model1(first: 10) {
+            edges {
+                node {
+                    id
+                    field1
+                    model2(where: {field1: [\\"test\\"]}) {
+                        id
+                    }
+                }
+            }
+        }
+        f1:model1(first: 15) {
+            edges {
+                node {
+                    model2(where: {field1: [\\"test5\\"]}) {
+                        field2
+                    }
+                }
+            }
+        }
+    }
+}"
+`;

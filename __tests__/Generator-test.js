@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const schema2_1 = require("./../__fixtures__/schema2");
 const Generator_1 = require("./../Generator");
-fdescribe("Generator", () => {
+describe("Generator", () => {
     it("mutation", () => {
         const generator = new Generator_1.default(schema2_1.default);
         const execution = generator.generate(({ mutation }) => {
@@ -66,5 +66,23 @@ fdescribe("Generator", () => {
             },
         }, execution.executor);
         expect(result).toMatchSnapshot();
+    });
+    it("query with same arguments", () => {
+        const generator = new Generator_1.default(schema2_1.default);
+        const execution = generator.generate((schemaObj) => {
+            const items = schemaObj.query.viewer.model1({
+                first: 10,
+            }).edges.map(({ node }) => {
+                return node.field1;
+            });
+            const items2 = schemaObj.query.viewer.model1({
+                first: 20,
+            }).edges.map(({ node }) => {
+                return node.field1;
+            });
+            return { items, items2 };
+        });
+        const query = generator.getQuery(execution);
+        expect(query).toMatchSnapshot();
     });
 });

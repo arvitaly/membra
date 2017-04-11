@@ -1,0 +1,434 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SchemaField fill 1`] = `
+Object {
+  "boolean1": "myau",
+  "collectionBoolean1": Array [
+    "false",
+    "true",
+  ],
+  "float": 502.12,
+  "id1": "HmHi",
+  "int1": 1015,
+  "str1": "Teststrstr1",
+  "sub1": Object {
+    "FuncFloatSub1": 884.4599999999999,
+    "FuncFloatSub2": 116.92,
+    "StrSub1": "str2tests",
+  },
+  "sub2": Array [
+    Object {
+      "StrSub1": "StrSub2Sub2",
+    },
+  ],
+}
+`;
+
+exports[`SchemaField when created, should has getter for all childs 1`] = `
+Object {
+  "Boolean1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "Boolean",
+        "isArray": false,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "Boolean1",
+      },
+      "name": "Boolean1",
+      "obj": undefined,
+      "realName": "Boolean1",
+      "value": true,
+    },
+  ],
+  "Float1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "Float",
+        "isArray": false,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "Float1",
+      },
+      "name": "Float1",
+      "obj": undefined,
+      "realName": "Float1",
+      "value": 1.1,
+    },
+  ],
+  "Id1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "ID",
+        "isArray": false,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "Id1",
+      },
+      "name": "Id1",
+      "obj": undefined,
+      "realName": "Id1",
+      "value": "ID",
+    },
+  ],
+  "Int1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "Int",
+        "isArray": false,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "Int1",
+      },
+      "name": "Int1",
+      "obj": undefined,
+      "realName": "Int1",
+      "value": 1,
+    },
+  ],
+  "Str1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "String",
+        "isArray": false,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "Str1",
+      },
+      "name": "Str1",
+      "obj": undefined,
+      "realName": "Str1",
+      "value": " ",
+    },
+  ],
+  "collectionBoolean1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "graphQLType": "Boolean",
+        "isArray": true,
+        "isFunction": false,
+        "isObject": false,
+        "isScalar": true,
+        "name": "collectionBoolean1",
+      },
+      "name": "collectionBoolean1",
+      "obj": undefined,
+      "realName": "collectionBoolean1",
+      "value": Array [
+        true,
+      ],
+    },
+  ],
+  "sub1": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "isArray": false,
+        "isFunction": false,
+        "isObject": true,
+        "isScalar": false,
+        "name": "sub1",
+        "type": Object {
+          "fields": Array [
+            Object {
+              "graphQLType": "String",
+              "isArray": false,
+              "isFunction": false,
+              "isObject": false,
+              "isScalar": true,
+              "name": "StrSub1",
+            },
+            Object {
+              "graphQLType": "Float",
+              "isArray": false,
+              "isFunction": true,
+              "isObject": false,
+              "isScalar": true,
+              "name": "FuncFloatSub1",
+            },
+          ],
+          "name": "Obj1",
+        },
+      },
+      "name": "sub1",
+      "obj": SchemaField {
+        "childs": Object {
+          "FuncFloatSub1": Array [
+            Object {
+              "args": Object {
+                "test": "fix",
+              },
+              "field": Object {
+                "graphQLType": "Float",
+                "isArray": false,
+                "isFunction": true,
+                "isObject": false,
+                "isScalar": true,
+                "name": "FuncFloatSub1",
+              },
+              "name": "FuncFloatSub1",
+              "obj": undefined,
+              "realName": "FuncFloatSub1",
+              "value": 1.1,
+            },
+            Object {
+              "args": Object {
+                "test2": "fix2",
+              },
+              "field": Object {
+                "graphQLType": "Float",
+                "isArray": false,
+                "isFunction": true,
+                "isObject": false,
+                "isScalar": true,
+                "name": "FuncFloatSub1",
+              },
+              "name": "f1",
+              "obj": undefined,
+              "realName": "FuncFloatSub1",
+              "value": 1.1,
+            },
+          ],
+          "StrSub1": Array [
+            Object {
+              "args": undefined,
+              "field": Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+              "name": "StrSub1",
+              "obj": undefined,
+              "realName": "StrSub1",
+              "value": " ",
+            },
+          ],
+        },
+        "config": Object {
+          "fields": Array [
+            Object {
+              "graphQLType": "String",
+              "isArray": false,
+              "isFunction": false,
+              "isObject": false,
+              "isScalar": true,
+              "name": "StrSub1",
+            },
+            Object {
+              "graphQLType": "Float",
+              "isArray": false,
+              "isFunction": true,
+              "isObject": false,
+              "isScalar": true,
+              "name": "FuncFloatSub1",
+            },
+          ],
+          "name": "Obj1",
+        },
+        "currentAlias": 2,
+        "data": undefined,
+        "isForFill": false,
+      },
+      "realName": "sub1",
+      "value": SchemaField {
+        "childs": Object {
+          "FuncFloatSub1": Array [
+            Object {
+              "args": Object {
+                "test": "fix",
+              },
+              "field": Object {
+                "graphQLType": "Float",
+                "isArray": false,
+                "isFunction": true,
+                "isObject": false,
+                "isScalar": true,
+                "name": "FuncFloatSub1",
+              },
+              "name": "FuncFloatSub1",
+              "obj": undefined,
+              "realName": "FuncFloatSub1",
+              "value": 1.1,
+            },
+            Object {
+              "args": Object {
+                "test2": "fix2",
+              },
+              "field": Object {
+                "graphQLType": "Float",
+                "isArray": false,
+                "isFunction": true,
+                "isObject": false,
+                "isScalar": true,
+                "name": "FuncFloatSub1",
+              },
+              "name": "f1",
+              "obj": undefined,
+              "realName": "FuncFloatSub1",
+              "value": 1.1,
+            },
+          ],
+          "StrSub1": Array [
+            Object {
+              "args": undefined,
+              "field": Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+              "name": "StrSub1",
+              "obj": undefined,
+              "realName": "StrSub1",
+              "value": " ",
+            },
+          ],
+        },
+        "config": Object {
+          "fields": Array [
+            Object {
+              "graphQLType": "String",
+              "isArray": false,
+              "isFunction": false,
+              "isObject": false,
+              "isScalar": true,
+              "name": "StrSub1",
+            },
+            Object {
+              "graphQLType": "Float",
+              "isArray": false,
+              "isFunction": true,
+              "isObject": false,
+              "isScalar": true,
+              "name": "FuncFloatSub1",
+            },
+          ],
+          "name": "Obj1",
+        },
+        "currentAlias": 2,
+        "data": undefined,
+        "isForFill": false,
+      },
+    },
+  ],
+  "sub2": Array [
+    Object {
+      "args": undefined,
+      "field": Object {
+        "isArray": true,
+        "isFunction": false,
+        "isObject": true,
+        "isScalar": false,
+        "name": "sub2",
+        "type": Object {
+          "fields": Array [
+            Object {
+              "graphQLType": "String",
+              "isArray": false,
+              "isFunction": false,
+              "isObject": false,
+              "isScalar": true,
+              "name": "StrSub1",
+            },
+          ],
+          "name": "Obj2",
+        },
+      },
+      "name": "sub2",
+      "obj": SchemaField {
+        "childs": Object {
+          "StrSub1": Array [
+            Object {
+              "args": undefined,
+              "field": Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+              "name": "StrSub1",
+              "obj": undefined,
+              "realName": "StrSub1",
+              "value": " ",
+            },
+          ],
+        },
+        "config": Object {
+          "fields": Array [
+            Object {
+              "graphQLType": "String",
+              "isArray": false,
+              "isFunction": false,
+              "isObject": false,
+              "isScalar": true,
+              "name": "StrSub1",
+            },
+          ],
+          "name": "Obj2",
+        },
+        "currentAlias": 1,
+        "data": undefined,
+        "isForFill": false,
+      },
+      "realName": "sub2",
+      "value": Array [
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+      ],
+    },
+  ],
+}
+`;

@@ -152,7 +152,7 @@ class Membra {
         return ids;
     }
     getIdsFromConnection(data, fields) {
-        const ids = [];
+        // const ids: string[] = [];
         const edgesField = fields.find((f) => f.name === "edges");
         if (!edgesField) {
             throw new Error("Not found edges field in connection");

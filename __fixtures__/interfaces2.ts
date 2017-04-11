@@ -3,13 +3,13 @@ export interface IMutation {
     createModel1(params?: IMutationcreateModel1Params): ICreateModel1Payload;
 }
 export interface IMutationcreateModel1Params {
-    input: ICreateMode1lInput;
+    input?: ICreateMode1lInput;
 }
 export interface ICreateMode1lInput {
-    setField1: ICreateModel1InputSetField1;
+    setField1?: ICreateModel1InputSetField1;
 }
 export interface ICreateModel1InputSetField1 {
-    field1: string;
+    field1?: string;
 }
 export interface ICreateModel1Payload {
     test: string;
@@ -23,10 +23,10 @@ export interface IViewer {
     model1(params?: IViewermodel1Params): IModel1Connection;
 }
 export interface IViewermodel1Params {
-    after: string;
-    first: number;
-    before: string;
-    last: number;
+    after?: string;
+    first?: number;
+    before?: string;
+    last?: number;
 }
 export interface IModel1Connection {
     edges: IModel1ConnectionEdge[];
@@ -47,7 +47,7 @@ export interface IModel1model2Params {
     where: IWhere;
 }
 export interface IWhere {
-    field1: string[];
+    field1?: string[];
 }
 export interface IModel2 {
     field2: number;
