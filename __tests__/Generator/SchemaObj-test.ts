@@ -3,19 +3,18 @@ import schema from "./../../__fixtures__/schema2";
 import SchemaObj from "./../../Generator/SchemaObj";
 describe("SchemaObj", () => {
     const executor = ({ query: queryObj }: { query: IQuery }) => {
-        const m1 = queryObj.viewer.model1({
+        const node = queryObj.viewer.model1({
             first: 10,
-        }).edges.map(({ node }) => {
-            return {
-                id: node.id,
-                field1: node.field1,
-                model2: node.model2({ where: { field1: ["test"] } }).id,
-            };
-        });
+        }).edges[1].node;
+        const m1 = [{
+            id: node.id,
+            field1: node.field1,
+            model2: node.model2({ where: { field1: ["test"] } }).id,
+        }];
         const m2 = queryObj.viewer.model1({
             first: 15,
-        }).edges.map(({ node }) => {
-            return node.model2({ where: { field1: ["test5"] } }).field2;
+        }).edges.map(({ node: n }) => {
+            return n.model2({ where: { field1: ["test5"] } }).field2;
         });
         return { m1, m2 };
     };
@@ -40,7 +39,7 @@ describe("SchemaObj", () => {
                     }],
                 },
                 model1: {
-                    edges: [{
+                    edges: [null, {
                         node: {
                             id: "ID11",
                             field1: "Test",

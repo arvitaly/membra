@@ -98,7 +98,11 @@ class SchemaField {
             }
         }
         if (field.isArray && !this.isForFill) {
-            value = [value];
+            const arr = [];
+            for (let i = 0; i < 30; i++) {
+                arr.push(value);
+            }
+            value = arr;
         }
         return {
             name,

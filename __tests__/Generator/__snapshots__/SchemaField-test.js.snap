@@ -127,6 +127,35 @@ Object {
       "realName": "collectionBoolean1",
       "value": Array [
         true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
       ],
     },
   ],
@@ -390,6 +419,1079 @@ Object {
       },
       "realName": "sub2",
       "value": Array [
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
+        SchemaField {
+          "childs": Object {
+            "StrSub1": Array [
+              Object {
+                "args": undefined,
+                "field": Object {
+                  "graphQLType": "String",
+                  "isArray": false,
+                  "isFunction": false,
+                  "isObject": false,
+                  "isScalar": true,
+                  "name": "StrSub1",
+                },
+                "name": "StrSub1",
+                "obj": undefined,
+                "realName": "StrSub1",
+                "value": " ",
+              },
+            ],
+          },
+          "config": Object {
+            "fields": Array [
+              Object {
+                "graphQLType": "String",
+                "isArray": false,
+                "isFunction": false,
+                "isObject": false,
+                "isScalar": true,
+                "name": "StrSub1",
+              },
+            ],
+            "name": "Obj2",
+          },
+          "currentAlias": 1,
+          "data": undefined,
+          "isForFill": false,
+        },
         SchemaField {
           "childs": Object {
             "StrSub1": Array [
