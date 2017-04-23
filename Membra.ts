@@ -16,9 +16,9 @@ export interface IQueryResult<T> {
     onemitter: Onemitter<any>;
     remove: () => void;
 }
-export interface IMembraClient {
+export interface IMembraClient<S> {
     live<T>(query: IQuery<T>, vars?: any): Promise<IQueryResult<T>>;
-    execute<T>(execution: IExecution<T>): Promise<T>;
+    execute<T>(executor: (f: S) => T): Promise<T>;
 }
 // interface ILiveQuery extends Onemitter<any> { }
 class Membra {

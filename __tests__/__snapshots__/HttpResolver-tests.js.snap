@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when fetch, should call global fetch with true params 1`] = `
+Array [
+  Array [
+    "http://127.0.0.1:1337/graphql",
+    Object {
+      "body": "{\\"query\\":\\"query Q1{\\\\n        viewer{\\\\n            users{\\\\n                edges{\\\\n                    node{\\\\n                        name\\\\n                    }\\\\n                }\\\\n            }\\\\n        }\\\\n    }\\",\\"vars\\":{\\"id\\":1}}",
+      "headers": Object {
+        "Content-Type": "application/json",
+      },
+      "method": "POST",
+    },
+  ],
+]
+`;
+
+exports[`when fetch, should call global fetch with true params 2`] = `
+Object {
+  "test": 15,
+}
+`;
