@@ -6,7 +6,7 @@ class QueryParser {
     constructor(schema) {
         this.schema = schema;
     }
-    parse(literals, ...placeholders) {
+    parse(literals, ..._) {
         const query = literals.join("");
         const fieldsInfo = graphql_fields_info_1.fromQuery(query, this.schema);
         this.addIds(fieldsInfo.getFields());

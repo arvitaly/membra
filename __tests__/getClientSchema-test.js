@@ -8,27 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Resolver {
-    constructor(config) {
-        this.config = config;
-    }
-    fetch(query, vars, _) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const res = yield fetch(this.config.address, {
-                method: "POST",
-                body: JSON.stringify({
-                    query,
-                    vars,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            return yield res.json();
-        });
-    }
-    unsubscribe(_) {
-        throw new Error("Not implemented");
-    }
-}
-exports.default = Resolver;
+const graphql_1 = require("graphql");
+const _1 = require("./../");
+const schema2_1 = require("./../__fixtures__/schema2");
+it("when get client schema, should return it", () => __awaiter(this, void 0, void 0, function* () {
+    const resolver = {
+        fetch: () => __awaiter(this, void 0, void 0, function* () {
+            return yield graphql_1.graphql(schema2_1.default, graphql_1.introspectionQuery);
+        }),
+    };
+    const membra = new _1.Membra(resolver);
+    expect(yield membra.getClientSchema()).toMatchSnapshot();
+}));

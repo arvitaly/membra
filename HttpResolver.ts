@@ -4,7 +4,7 @@ export interface IResolverConfig {
 }
 class Resolver implements IResolver {
     constructor(protected config: IResolverConfig) { }
-    public async fetch(query: string, vars?: any, subscriptionId?: string) {
+    public async fetch(query: string, vars?: any, _?: string) {
         const res = await fetch(this.config.address, {
             method: "POST",
             body: JSON.stringify({
@@ -17,7 +17,7 @@ class Resolver implements IResolver {
         });
         return await res.json();
     }
-    public unsubscribe(id: string): Promise<void> {
+    public unsubscribe(_: string): Promise<void> {
         throw new Error("Not implemented");
     }
 }

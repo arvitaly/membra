@@ -1,3 +1,4 @@
+import { buildClientSchema, introspectionQuery } from "graphql";
 import { Fields } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
 import { IExecution } from "./Generator";
@@ -48,7 +49,11 @@ class Membra {
         });
         return this.data[id];
     }
-    public async execute<T>(execution: IExecution<T>): Promise<T> {
+    public async getClientSchema() {
+        const schemaJSON = await this.resolver.fetch(introspectionQuery);
+        return buildClientSchema(schemaJSON.data);
+    }
+    public async execute<T>(execution: IExecution): Promise<T> {
         const data = await this.resolver.fetch(execution.schemaObj.getQuery());
         return execution.schemaObj.fillData(data, execution.executor);
     }

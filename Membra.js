@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const graphql_1 = require("graphql");
 const onemitter_1 = require("onemitter");
 // interface ILiveQuery extends Onemitter<any> { }
 class Membra {
@@ -39,6 +40,12 @@ class Membra {
                 o.emit(this.data[id].value);
             });
             return this.data[id];
+        });
+    }
+    getClientSchema() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const schemaJSON = yield this.resolver.fetch(graphql_1.introspectionQuery);
+            return graphql_1.buildClientSchema(schemaJSON.data);
         });
     }
     execute(execution) {
