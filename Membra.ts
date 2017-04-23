@@ -55,7 +55,7 @@ class Membra {
     }
     public async execute<T>(execution: IExecution): Promise<T> {
         const data = await this.resolver.fetch(execution.schemaObj.getQuery());
-        return execution.schemaObj.fillData(data, execution.executor);
+        return execution.schemaObj.fillData(data.data, execution.executor);
     }
     public addNode(dataId: string, globalId: string, value: any) {
         if (this.data[dataId].isRemoved) {
