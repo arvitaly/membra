@@ -117,9 +117,19 @@ class Membra {
             })));
         });
     }
+    fetch(query, vars, subscriptionId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const body = yield this.resolver.fetch(query, vars, subscriptionId);
+            const data = body;
+            if (data.errors) {
+                throw new Error("Errors: " + JSON.stringify(data.errors));
+            }
+            return data.data;
+        });
+    }
     fillQuery(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const value = yield this.resolver.fetch(data.query.text, data.vars, data.id);
+            const value = yield this.fetch(data.query.text, data.vars, data.id);
             const ids = this.getIds(value, data.query.fields);
             data.value = value;
             data.ids = ids;

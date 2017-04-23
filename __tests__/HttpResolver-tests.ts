@@ -7,7 +7,7 @@ it("when fetch, should call global fetch with true params", async () => {
     fetchFn.mockImplementation(() => {
         return Promise.resolve({
             json: (): any => {
-                return { test: 15 };
+                return { data: { test: 15 } };
             },
         });
     });

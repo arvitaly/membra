@@ -17,6 +17,8 @@ Array [
 
 exports[`when fetch, should call global fetch with true params 2`] = `
 Object {
-  "test": 15,
+  "data": Object {
+    "test": 15,
+  },
 }
 `;

@@ -118,8 +118,16 @@ class Membra {
             });
         }));
     }
+    public async fetch(query: string, vars?: any, subscriptionId?: string) {
+        const body = await this.resolver.fetch(query, vars, subscriptionId);
+        const data: { data: any, errors: any } = body;
+        if (data.errors) {
+            throw new Error("Errors: " + JSON.stringify(data.errors));
+        }
+        return data.data;
+    }
     protected async fillQuery(data: IQueryResult<any>) {
-        const value = await this.resolver.fetch(data.query.text, data.vars, data.id);
+        const value = await this.fetch(data.query.text, data.vars, data.id);
         const ids = this.getIds(value, data.query.fields);
         data.value = value;
         data.ids = ids;

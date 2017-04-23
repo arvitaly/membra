@@ -25,15 +25,18 @@ describe("Relay tests", () => {
             fetch: jest.fn((q: string, vars?: any, subscriptionId?: string) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
-                    node: {
-                        id: globalId1,
-                        field1: "field1Value",
-                        model2: {
-                            id: toGlobalId("Model2", "100"),
-                            field2: 15,
+                    data: {
+                        node: {
+                            id: globalId1,
+                            field1: "field1Value",
+                            model2: {
+                                id: toGlobalId("Model2", "100"),
+                                field2: 15,
+                            },
                         },
                     },
                 };
+
             }),
         };
         const relay = new Relay(resolver);
@@ -68,19 +71,21 @@ describe("Relay tests", () => {
             fetch: jest.fn((q: string, vars?: any, subscriptionId?: string) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
-                    viewer: {
-                        id: toGlobalId("Viewer", ""),
-                        model1: {
-                            edges: [{
-                                node: {
-                                    id: globalId1,
-                                    field1: "field1Value",
-                                    model2: {
-                                        id: toGlobalId("Model2", "100"),
-                                        field2: 15,
+                    data: {
+                        viewer: {
+                            id: toGlobalId("Viewer", ""),
+                            model1: {
+                                edges: [{
+                                    node: {
+                                        id: globalId1,
+                                        field1: "field1Value",
+                                        model2: {
+                                            id: toGlobalId("Model2", "100"),
+                                            field2: 15,
+                                        },
                                     },
-                                },
-                            }],
+                                }],
+                            },
                         },
                     },
                 };

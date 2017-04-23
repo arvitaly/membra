@@ -34,12 +34,14 @@ describe("Relay tests", () => {
             fetch: jest.fn((q, vars, subscriptionId) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
-                    node: {
-                        id: globalId1,
-                        field1: "field1Value",
-                        model2: {
-                            id: graphql_relay_1.toGlobalId("Model2", "100"),
-                            field2: 15,
+                    data: {
+                        node: {
+                            id: globalId1,
+                            field1: "field1Value",
+                            model2: {
+                                id: graphql_relay_1.toGlobalId("Model2", "100"),
+                                field2: 15,
+                            },
                         },
                     },
                 };
@@ -77,19 +79,21 @@ describe("Relay tests", () => {
             fetch: jest.fn((q, vars, subscriptionId) => {
                 expect({ q, vars, subscriptionId }).toMatchSnapshot();
                 return {
-                    viewer: {
-                        id: graphql_relay_1.toGlobalId("Viewer", ""),
-                        model1: {
-                            edges: [{
-                                    node: {
-                                        id: globalId1,
-                                        field1: "field1Value",
-                                        model2: {
-                                            id: graphql_relay_1.toGlobalId("Model2", "100"),
-                                            field2: 15,
+                    data: {
+                        viewer: {
+                            id: graphql_relay_1.toGlobalId("Viewer", ""),
+                            model1: {
+                                edges: [{
+                                        node: {
+                                            id: globalId1,
+                                            field1: "field1Value",
+                                            model2: {
+                                                id: graphql_relay_1.toGlobalId("Model2", "100"),
+                                                field2: 15,
+                                            },
                                         },
-                                    },
-                                }],
+                                    }],
+                            },
                         },
                     },
                 };
