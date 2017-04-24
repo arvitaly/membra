@@ -1,6 +1,6 @@
 {
   "name": "membra",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Abstract GraphQL-client for usage with other adapters",
   "main": "index.js",
   "scripts": {
