@@ -16,7 +16,7 @@ exports[`Generator query 1`] = `
         model1(first: 10, after: \\"15\\", before: \\"15\\", last: 10) {
             edges {
                 node {
-                    model2(where: {field1: [\\"test\\"], field3: [field4: \\"testValueField4\\"]}) {
+                    model2(where: {field1: [\\"test\\"], field3: [{field4: \\"testValueField4\\"}]}) {
                         field2
                         id
                     }

@@ -80,7 +80,7 @@ export default class SchemaObj {
                 if (Array.isArray(params[key])) {
                     return key + ": [" + (params[key] as any[]).map((value) => {
                         if (value !== null && typeof (value) === "object") {
-                            return this.prepareParams(value);
+                            return "{" + this.prepareParams(value) + "}";
                         } else {
                             return JSON.stringify(value);
                         }

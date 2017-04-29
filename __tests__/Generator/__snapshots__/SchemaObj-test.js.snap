@@ -23,7 +23,7 @@ exports[`SchemaObj get query 1`] = `
                 node {
                     id
                     field1
-                    model2(where: {field1: [\\"test\\"], nullableField: null, field3: [field4: \\"field4Value1\\"]}) {
+                    model2(where: {field1: [\\"test\\"], nullableField: null, field3: [{field4: \\"field4Value1\\"}]}) {
                         id
                     }
                 }
@@ -32,7 +32,7 @@ exports[`SchemaObj get query 1`] = `
         f1:model1(first: 15) {
             edges {
                 node {
-                    model2(where: {field1: [\\"test5\\"], field3: [field4: \\"field4Value2\\"]}) {
+                    model2(where: {field1: [\\"test5\\"], field3: [{field4: \\"field4Value2\\"}]}) {
                         field2
                     }
                 }
