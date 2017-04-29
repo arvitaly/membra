@@ -9,12 +9,27 @@ describe("SchemaObj", () => {
         const m1 = [{
             id: node.id,
             field1: node.field1,
-            model2: node.model2({ where: { field1: ["test"] } }).id,
+            model2: node.model2({
+                where: {
+                    field1: ["test"],
+                    nullableField: null,
+                    field3: [{
+                        field4: "field4Value1",
+                    }],
+                },
+            }).id,
         }];
         const m2 = queryObj.viewer.model1({
             first: 15,
         }).edges.map(({ node: n }) => {
-            return n.model2({ where: { field1: ["test5"] } }).field2;
+            return n.model2({
+                where: {
+                    field1: ["test5"],
+                    field3: [{
+                        field4: "field4Value2",
+                    }],
+                },
+            }).field2;
         });
         return { m1, m2 };
     };

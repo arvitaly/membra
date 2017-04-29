@@ -69,6 +69,7 @@ GraphQLSchema {
     "CreateMode1lInput": "CreateMode1lInput",
     "CreateModel1InputSetField1": "CreateModel1InputSetField1",
     "CreateModel1Payload": "CreateModel1Payload",
+    "Field2": "Field2",
     "ID": "ID",
     "Int": "Int",
     "Model1": "Model1",

@@ -25,9 +25,8 @@ describe("Relay tests", () => {
             field1
             model2{
                 field2
-            }                
-        }        
-        `;
+            }
+        }`;
         const unsubscribe = jest.fn();
         const resolver = {
             unsubscribe,

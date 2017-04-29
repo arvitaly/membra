@@ -35,11 +35,25 @@ const mutation = new g.GraphQLObjectType({
         },
     },
 });
+const model2ArgsField3 = new g.GraphQLInputObjectType({
+    name: "Field2",
+    fields: {
+        field4: {
+            type: new g.GraphQLNonNull(g.GraphQLID),
+        },
+    },
+});
 const where = new g.GraphQLInputObjectType({
     name: "Where",
     fields: {
         field1: {
             type: new g.GraphQLList(g.GraphQLString),
+        },
+        field3: {
+            type: new g.GraphQLNonNull(new g.GraphQLList(model2ArgsField3)),
+        },
+        nullableField: {
+            type: g.GraphQLInt,
         },
     },
 });

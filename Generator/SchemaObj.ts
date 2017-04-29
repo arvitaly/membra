@@ -76,16 +76,23 @@ export default class SchemaObj {
     }
     protected prepareParams(params: any): any {
         return Object.keys(params).map((key) => {
-            if (typeof (params[key]) === "object") {
+            if (params[key] !== null && typeof (params[key]) === "object") {
                 if (Array.isArray(params[key])) {
-                    return key + ": [" + (params[key] as any[]).map((a) => JSON.stringify(a)).join(",") + "]";
+                    return key + ": [" + (params[key] as any[]).map((value) => {
+                        if (value !== null && typeof (value) === "object") {
+                            return this.prepareParams(value);
+                        } else {
+                            return JSON.stringify(value);
+                        }
+                    }).join(",") + "]";
                 }
                 if (typeof (params[key].toJSON) === "function") {
                     return key + ": \"" + params[key].toJSON() + "\"";
                 }
                 return key + ": {" + this.prepareParams(params[key]) + "}";
+            } else {
+                return key + ": " + JSON.stringify(params[key]);
             }
-            return key + ": " + JSON.stringify(params[key]);
         }).join(", ");
     }
 }

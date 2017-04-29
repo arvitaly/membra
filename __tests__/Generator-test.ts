@@ -33,7 +33,12 @@ describe("Generator", () => {
                 last: 10,
             }).edges.map(({ node }) => {
                 const model2 = node.model2({
-                    where: { field1: ["test"] },
+                    where: {
+                        field1: ["test"],
+                        field3: [{
+                            field4: "testValueField4",
+                        }],
+                    },
                 });
                 return {
                     f: node.field1,

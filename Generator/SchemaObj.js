@@ -79,16 +79,25 @@ class SchemaObj {
     }
     prepareParams(params) {
         return Object.keys(params).map((key) => {
-            if (typeof (params[key]) === "object") {
+            if (params[key] !== null && typeof (params[key]) === "object") {
                 if (Array.isArray(params[key])) {
-                    return key + ": [" + params[key].map((a) => JSON.stringify(a)).join(",") + "]";
+                    return key + ": [" + params[key].map((value) => {
+                        if (value !== null && typeof (value) === "object") {
+                            return this.prepareParams(value);
+                        }
+                        else {
+                            return JSON.stringify(value);
+                        }
+                    }).join(",") + "]";
                 }
                 if (typeof (params[key].toJSON) === "function") {
                     return key + ": \"" + params[key].toJSON() + "\"";
                 }
                 return key + ": {" + this.prepareParams(params[key]) + "}";
             }
-            return key + ": " + JSON.stringify(params[key]);
+            else {
+                return key + ": " + JSON.stringify(params[key]);
+            }
         }).join(", ");
     }
 }
