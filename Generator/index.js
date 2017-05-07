@@ -5,9 +5,9 @@ class Generator {
     constructor(schema) {
         this.schema = schema;
     }
-    generate(executor) {
+    generate(executor, vars) {
         const schemaObj = this.createSchemaObj();
-        executor(schemaObj);
+        executor(schemaObj, vars);
         return {
             schemaObj,
             executor,

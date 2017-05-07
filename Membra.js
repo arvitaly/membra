@@ -56,9 +56,9 @@ class Membra {
                 const schema = yield this.getClientSchema();
                 this.generator = new Generator_1.default(schema);
             }
-            const execution = this.generator.generate(executor);
-            const data = yield this.fetch(execution.schemaObj.getQuery(), vars);
-            return execution.schemaObj.fillData(data, execution.executor);
+            const execution = this.generator.generate(executor, vars);
+            const data = yield this.fetch(execution.schemaObj.getQuery());
+            return execution.schemaObj.fillData(data, execution.executor, vars);
         });
     }
     addNode(dataId, globalId, value) {

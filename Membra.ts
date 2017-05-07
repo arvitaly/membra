@@ -19,7 +19,7 @@ export interface IQueryResult<T> {
 }
 export interface IMembraClient<S> {
     live<T>(query: IQuery<T>, vars?: any): Promise<IQueryResult<T>>;
-    execute<T>(executor: (f: S) => T): Promise<T>;
+    execute<T>(executor: (f: S) => T, vars?: any): Promise<T>;
 }
 // interface ILiveQuery extends Onemitter<any> { }
 class Membra<S> {
@@ -60,9 +60,9 @@ class Membra<S> {
             const schema = await this.getClientSchema();
             this.generator = new Generator<S>(schema);
         }
-        const execution = this.generator.generate(executor);
-        const data = await this.fetch(execution.schemaObj.getQuery(), vars);
-        return execution.schemaObj.fillData(data, execution.executor);
+        const execution = this.generator.generate(executor, vars);
+        const data = await this.fetch(execution.schemaObj.getQuery());
+        return execution.schemaObj.fillData(data, execution.executor, vars);
     }
     public addNode(dataId: string, globalId: string, value: any) {
         if (this.data[dataId].isRemoved) {

@@ -34,7 +34,7 @@ Object {
   "id": "15",
   "items": Array [
     Object {
-      "f": "field1Value",
+      "f": "field1Valuevar1Value2",
       "x": "101",
       "y": "11",
     },

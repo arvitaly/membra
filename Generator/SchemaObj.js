@@ -65,16 +65,16 @@ class SchemaObj {
         });
         return res;
     }
-    fillData(data, executor) {
+    fillData(data, executor, vars) {
         if (this.queryType === "query") {
             return executor({
                 query: new SchemaField_1.default(this.types.Query, true, data),
-            });
+            }, vars);
         }
         else {
             return executor({
                 mutation: new SchemaField_1.default(this.types.Mutation, true, data),
-            });
+            }, vars);
         }
     }
     prepareParams(params) {

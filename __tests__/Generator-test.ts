@@ -25,7 +25,7 @@ describe("Generator", () => {
     });
     it("query", () => {
         const generator = new Generator<{ query: IQuery }>(schema);
-        const execution = generator.generate((schemaObj) => {
+        const execution = generator.generate((schemaObj, vars: any) => {
             const items = schemaObj.query.viewer.model1({
                 first: 10,
                 after: "15",
@@ -41,7 +41,7 @@ describe("Generator", () => {
                     },
                 });
                 return {
-                    f: node.field1,
+                    f: node.field1 + vars.var1,
                     x: model2.field2.toFixed(),
                     y: model2.id.toLowerCase(),
                 };
@@ -50,7 +50,7 @@ describe("Generator", () => {
                 items,
                 id: schemaObj.query.viewer.id,
             };
-        });
+        }, { var1: "var1Value" });
         const query = generator.getQuery(execution);
         expect(query).toMatchSnapshot();
         const result = execution.schemaObj.fillData({
@@ -68,7 +68,7 @@ describe("Generator", () => {
                     }],
                 },
             },
-        }, execution.executor);
+        }, execution.executor, { var1: "var1Value2" });
         expect(result).toMatchSnapshot();
     });
     it("query with same arguments", () => {

@@ -63,15 +63,15 @@ export default class SchemaObj {
         });
         return res;
     }
-    public fillData(data: any, executor: (schemaObj: any) => any): any {
+    public fillData(data: any, executor: (schemaObj: any, vars?: any) => any, vars?: any): any {
         if (this.queryType === "query") {
             return executor({
                 query: new SchemaField(this.types.Query, true, data),
-            });
+            }, vars);
         } else {
             return executor({
                 mutation: new SchemaField(this.types.Mutation, true, data),
-            });
+            }, vars);
         }
     }
     protected prepareParams(params: any): any {
