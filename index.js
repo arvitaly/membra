@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var HttpResolver_1 = require("./HttpResolver");
+exports.HttpResolver = HttpResolver_1.default;
 var Membra_1 = require("./Membra");
 exports.Membra = Membra_1.default;
 var QueryParser_1 = require("./QueryParser");
