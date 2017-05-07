@@ -1,6 +1,8 @@
+import fetch from "node-fetch";
 import { IResolver } from ".";
 export interface IResolverConfig {
     address: string;
+    fetch?: typeof fetch;
 }
 class Resolver implements IResolver {
     constructor(protected config: IResolverConfig) { }
