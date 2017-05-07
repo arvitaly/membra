@@ -1,9 +1,8 @@
 import Resolver from "./../HttpResolver";
 it("when fetch, should call global fetch with true params", async () => {
     const fetchFn = jest.fn();
-    (global as any).fetch = fetchFn;
     const address = "http://127.0.0.1:1337/graphql";
-    const resolver = new Resolver({ address });
+    const resolver = new Resolver({ address, fetch: fetchFn });
     fetchFn.mockImplementation(() => {
         return Promise.resolve({
             json: (): any => {

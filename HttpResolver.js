@@ -12,10 +12,11 @@ const node_fetch_1 = require("node-fetch");
 class Resolver {
     constructor(config) {
         this.config = config;
+        this.fetchClient = this.config.fetch || node_fetch_1.default;
     }
     fetch(query, vars, _) {
         return __awaiter(this, void 0, void 0, function* () {
-            const res = yield node_fetch_1.default(this.config.address, {
+            const res = yield this.fetchClient(this.config.address, {
                 method: "POST",
                 body: JSON.stringify({
                     query,

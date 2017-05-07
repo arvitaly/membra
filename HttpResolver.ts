@@ -5,9 +5,12 @@ export interface IResolverConfig {
     fetch?: typeof fetch;
 }
 class Resolver implements IResolver {
-    constructor(protected config: IResolverConfig) { }
+    protected fetchClient: typeof fetch;
+    constructor(protected config: IResolverConfig) {
+        this.fetchClient = this.config.fetch || fetch;
+    }
     public async fetch(query: string, vars?: any, _?: string) {
-        const res = await fetch(this.config.address, {
+        const res = await this.fetchClient(this.config.address, {
             method: "POST",
             body: JSON.stringify({
                 query,

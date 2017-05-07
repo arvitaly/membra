@@ -11,9 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const HttpResolver_1 = require("./../HttpResolver");
 it("when fetch, should call global fetch with true params", () => __awaiter(this, void 0, void 0, function* () {
     const fetchFn = jest.fn();
-    global.fetch = fetchFn;
     const address = "http://127.0.0.1:1337/graphql";
-    const resolver = new HttpResolver_1.default({ address });
+    const resolver = new HttpResolver_1.default({ address, fetch: fetchFn });
     fetchFn.mockImplementation(() => {
         return Promise.resolve({
             json: () => {
