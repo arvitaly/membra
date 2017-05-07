@@ -1,7 +1,7 @@
 import { buildClientSchema, introspectionQuery } from "graphql";
 import { Fields } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
-import { IExecution } from "./Generator";
+import Generator, { IExecution } from "./Generator";
 import { IQuery } from "./typings";
 export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
@@ -22,9 +22,11 @@ export interface IMembraClient<S> {
     execute<T>(executor: (f: S) => T): Promise<T>;
 }
 // interface ILiveQuery extends Onemitter<any> { }
-class Membra {
+class Membra<S> {
     protected data: { [index: string]: IQueryResult<any> } = {};
     protected id = 0;
+    protected queries: Array<Promise<any>> = [];
+    protected generator: Generator<S>;
     constructor(protected resolver: IResolver) { }
     public async live<T>(query: IQuery<T>, vars?: any): Promise<IQueryResult<T>> {
         const id = this.getNewId();
@@ -53,9 +55,14 @@ class Membra {
         const schemaJSON = await this.resolver.fetch(introspectionQuery);
         return buildClientSchema(schemaJSON.data);
     }
-    public async execute<T>(execution: IExecution): Promise<T> {
-        const data = await this.resolver.fetch(execution.schemaObj.getQuery());
-        return execution.schemaObj.fillData(data.data, execution.executor);
+    public async execute<T>(executor: (f: S) => T, vars?: any): Promise<T> {
+        if (!this.generator) {
+            const schema = await this.getClientSchema();
+            this.generator = new Generator<S>(schema);
+        }
+        const execution = this.generator.generate(executor);
+        const data = await this.fetch(execution.schemaObj.getQuery(), vars);
+        return execution.schemaObj.fillData(data, execution.executor);
     }
     public addNode(dataId: string, globalId: string, value: any) {
         if (this.data[dataId].isRemoved) {
@@ -118,8 +125,20 @@ class Membra {
             });
         }));
     }
+    public async waitAll() {
+        await Promise.all(this.queries);
+    }
     public async fetch(query: string, vars?: any, subscriptionId?: string) {
-        const body = await this.resolver.fetch(query, vars, subscriptionId);
+        const pr = new Promise<{ data: any, errors: any }>(async (resolve, reject) => {
+            try {
+                resolve(await this.resolver.fetch(query, vars, subscriptionId));
+            } catch (e) {
+                reject(e);
+            }
+        });
+        this.queries.push(pr);
+        const body = await pr;
+        this.queries = this.queries.filter((p) => pr !== p);
         const data: { data: any, errors: any } = body;
         if (data.errors) {
             throw new Error("Errors: " + JSON.stringify(data.errors));

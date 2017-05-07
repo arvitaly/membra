@@ -10,12 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const onemitter_1 = require("onemitter");
+const Generator_1 = require("./Generator");
 // interface ILiveQuery extends Onemitter<any> { }
 class Membra {
     constructor(resolver) {
         this.resolver = resolver;
         this.data = {};
         this.id = 0;
+        this.queries = [];
     }
     live(query, vars) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -48,10 +50,15 @@ class Membra {
             return graphql_1.buildClientSchema(schemaJSON.data);
         });
     }
-    execute(execution) {
+    execute(executor, vars) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.resolver.fetch(execution.schemaObj.getQuery());
-            return execution.schemaObj.fillData(data.data, execution.executor);
+            if (!this.generator) {
+                const schema = yield this.getClientSchema();
+                this.generator = new Generator_1.default(schema);
+            }
+            const execution = this.generator.generate(executor);
+            const data = yield this.fetch(execution.schemaObj.getQuery(), vars);
+            return execution.schemaObj.fillData(data, execution.executor);
         });
     }
     addNode(dataId, globalId, value) {
@@ -117,9 +124,24 @@ class Membra {
             })));
         });
     }
+    waitAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Promise.all(this.queries);
+        });
+    }
     fetch(query, vars, subscriptionId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const body = yield this.resolver.fetch(query, vars, subscriptionId);
+            const pr = new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                try {
+                    resolve(yield this.resolver.fetch(query, vars, subscriptionId));
+                }
+                catch (e) {
+                    reject(e);
+                }
+            }));
+            this.queries.push(pr);
+            const body = yield pr;
+            this.queries = this.queries.filter((p) => pr !== p);
             const data = body;
             if (data.errors) {
                 throw new Error("Errors: " + JSON.stringify(data.errors));
