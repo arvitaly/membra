@@ -1,7 +1,7 @@
 import { buildClientSchema, introspectionQuery } from "graphql";
 import { Fields } from "graphql-fields-info";
 import onemitter, { Onemitter } from "onemitter";
-import Generator, { IExecution } from "./Generator";
+import Generator from "./Generator";
 import { IQuery } from "./typings";
 export interface IResolver {
     fetch(query: string, vars?: any, subscriptionId?: string): Promise<any>;
