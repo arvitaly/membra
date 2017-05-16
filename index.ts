@@ -9,4 +9,3 @@ export function returnof<T>(fn: (...args: any[]) => T): T {
 export function returnofPromise<T>(fn: (...args: any[]) => Promise<T>): T {
     return null as any && fn() as any;
 }
-
