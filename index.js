@@ -8,3 +8,11 @@ var QueryParser_1 = require("./QueryParser");
 exports.QueryParser = QueryParser_1.default;
 var Generator_1 = require("./Generator");
 exports.Generator = Generator_1.default;
+function returnof(fn) {
+    return null && fn();
+}
+exports.returnof = returnof;
+function returnofPromise(fn) {
+    return null && fn();
+}
+exports.returnofPromise = returnofPromise;
