@@ -9,7 +9,12 @@ export default class SchemaObj {
     public types: { [index: string]: ISchemaObjectConfig } = {};
     protected currentPrefix = 0;
     constructor(protected schema: GraphQLSchema) {
-        const mapper = new Mapper(schema, {});
+        let mapper = new Mapper(schema, {});
+        mapper.setMapGraphQLObjectType((config) => {
+            this.types[config.type.name] = { name: config.type.name, fields: [] };
+        });
+        mapper.map();
+        mapper = new Mapper(schema, {});
         mapper.setMapGraphQLObjectType((config) => {
             const fields = config.fields.map((f) => {
                 const isObject = f.type.realType instanceof GraphQLObjectType;
@@ -23,11 +28,9 @@ export default class SchemaObj {
                     isScalar: f.type.realType instanceof GraphQLScalarType,
                 };
             });
-            this.types[config.type.name] = {
-                name: config.type.name,
-                fields,
-            };
+            this.types[config.type.name].fields = fields;
         });
+
         mapper.map();
         const query = new SchemaField(this.types.Query);
         const mutation = new SchemaField(this.types.Mutation);

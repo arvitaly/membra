@@ -10,7 +10,12 @@ class SchemaObj {
         this.queryType = "query";
         this.types = {};
         this.currentPrefix = 0;
-        const mapper = new graphql_schema_map_1.Mapper(schema, {});
+        let mapper = new graphql_schema_map_1.Mapper(schema, {});
+        mapper.setMapGraphQLObjectType((config) => {
+            this.types[config.type.name] = { name: config.type.name, fields: [] };
+        });
+        mapper.map();
+        mapper = new graphql_schema_map_1.Mapper(schema, {});
         mapper.setMapGraphQLObjectType((config) => {
             const fields = config.fields.map((f) => {
                 const isObject = f.type.realType instanceof graphql_1.GraphQLObjectType;
@@ -24,10 +29,7 @@ class SchemaObj {
                     isScalar: f.type.realType instanceof graphql_1.GraphQLScalarType,
                 };
             });
-            this.types[config.type.name] = {
-                name: config.type.name,
-                fields,
-            };
+            this.types[config.type.name].fields = fields;
         });
         mapper.map();
         const query = new SchemaField_1.default(this.types.Query);
